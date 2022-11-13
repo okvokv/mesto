@@ -54,7 +54,7 @@ EditBtnElt.addEventListener('click', FormOpened);
 
 //Если форма открыта, отслеживать событие нажатия на кнопку Сохранить или на кнопку Закрыть
 CloseBtnElt.addEventListener('click', FormClosed);
-SubmitBtnElt.addEventListener('click', FormSubmit);
+//SubmitBtnElt.addEventListener('click', FormSubmit);
 
 //NameElt.value = ("profile__title").textContent
 //DescriptionElt.value = ("profile__subtitle").textContent

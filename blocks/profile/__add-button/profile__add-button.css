@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	border-radius: 2px;
 	background-color: transparent;
-	background-image: url("/images/add-button-vector.svg");
+	background-image: url("../../../images/add-button-vector.svg");
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;
