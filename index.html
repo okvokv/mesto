@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vendor/normalize.css">
+  <link rel="stylesheet" href="./vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body class="page">
+  <!-- Шапка сайта =================================================-->
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+  </header>
+
+  <main class="main">
+
+    <!--Секция профиль ==============================================-->
+    <section class="profile">
+
+      <img class="profile__avatar" src="images/avatar.png" alt="Аватар">
+      <div class="profile__info">
+        <h2 class="profile__title">Жак-Ив Кусто<button class="profile__edit-button" type="button"
+            aria-label="кнопка Редактировать профиль"></button></h2>
+        <p class="profile__subtitle">Исследователь океана</p>
+      </div>
+
+      <div class="profile__button">
+        <button class="profile__add-button" type="button" aria-label="кнопка добавления контента"></button>
+      </div>
+    </section>
+
+    <!--Секция элементы ==============================================-->
+    <section class="elements">
+      <ul class="elements__grid">
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
+            alt="фото Карачаевск">
+          <div class="element__caption">
+            <p class="element__text">Карачаевск</p>
+            <button class="element__icon"  type="button"></button>
+          </div>
+        </li>
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg"
+            alt="фото Гора Эльбрус ">
+          <div class="element__caption">
+            <p class="element__text">Гора Эльбрус</p>
+            <button class="element__icon" type="button"></button>
+          </div>
+        </li>
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg"
+            alt="фото Домбай">
+          <div class="element__caption">
+            <p class="element__text">Домбай</p>
+            <button class="element__icon" type="button"></button>
+          </div>
+        </li>
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg"
+            alt="фото Гора Эльбрус">
+          <div class="element__caption">
+            <p class="element__text">Гора Эльбрус</p>
+            <button class="element__icon" type="button"></button>
+          </div>
+        </li>
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg"
+            alt="фото Домбай">
+          <div class="element__caption">
+            <p class="element__text">Домбай</p>
+            <button class="element__icon" type="button"></button>
+          </div>
+        </li>
+        <li class="element"><img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
+            alt="фото Карачаево-Черкессия">
+          <div class="element__caption">
+            <p class="element__text">Карачаево-Черкессия</p>
+            <button class="element__icon" type="button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+  <!--Подножие сайта ================================================-->
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+  </footer>
+
+  <!--всплывающее окно с формой ===================-->
+  <section class="overlay">
+    <form class="form" novalidate>
+      <button class="form__close-button" type="reset" aria-label="кнопка Закрыть"></button>
+      <h3 class="form__title">Редактировать профиль</h3>
+      <input class="form__field" type="text" placeholder="Имя" name="Name" autofocus required>
+      <input class="form__field" type="text" placeholder="О себе" name="Description" required>
+      <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
+    </form>
+  </section>
+  <script src="./script.js"></script>
+</body>
+
+</html>

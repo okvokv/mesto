@@ -1,0 +1,9 @@
+.element {
+	margin: 0;
+	max-width: 282px;
+	max-height: 361px;
+	background-color: white;
+	list-style-type: none;
+	border-radius: 10px;
+	/* элементы сохраняются в обратном порядке */
+}
