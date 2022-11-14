@@ -4,6 +4,7 @@
 	height: 19px;
 	border: 0;
 	background-image: url("../../../images/icon.svg");
+	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;

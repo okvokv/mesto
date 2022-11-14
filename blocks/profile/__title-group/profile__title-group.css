@@ -1,0 +1,10 @@
+.profile__title-group {
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+}
+
+@media screen and (max-width: 918px) {
+.profile__title-group {
+	margin-top: 26px;
+}}

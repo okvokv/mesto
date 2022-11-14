@@ -1,12 +1,13 @@
 .form__submit-button {
 	margin: 0 auto;
-	margin-bottom: 37px;
+	padding-bottom: 37px;
 	padding: 0;
 	width: 358px;
 	height: 50px;
 	background-color: #000000;
 	border: 0;
 	border-radius: 2px;
+	box-sizing: border-box;
 	color: #FFFFFF;
 	font-style: normal;
 	font-weight: 400;
@@ -19,12 +20,11 @@
 	opacity: 0.8;
 }
 
-@media screen and (max-width: 564px) {
+@media screen and (max-width: 619px) {
 	.form__submit-button {
 		margin-bottom: 25px;
 		width: 238px;
 		height: 46px;
 		font-size: 14px;
-		line-height: 1.22;
 	}
 }

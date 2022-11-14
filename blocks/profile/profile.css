@@ -2,12 +2,14 @@
 	margin: 0 auto;
 	padding-top: 40px;
 	max-width: 100%;
+	min-height: 120px;
 	display: flex;
 	flex-wrap: wrap;
 }
 
 @media screen and (max-width: 918px) {
 	.profile {
+		min-height: 286px;
 		padding-top: 42px;
 		flex-direction: column;
 	}
