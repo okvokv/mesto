@@ -8,4 +8,4 @@
 
 Проект выполнен с использованием техники адаптивной вёрстки.
 
-https://okvokv.github.io/mesto/
+https://okvokv.github.io/mesto/index.html
