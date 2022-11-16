@@ -1,6 +1,4 @@
 .form__submit-button {
-	margin: 0 auto;
-	padding-bottom: 37px;
 	padding: 0;
 	width: 358px;
 	height: 50px;
@@ -22,7 +20,6 @@
 
 @media screen and (max-width: 619px) {
 	.form__submit-button {
-		margin-bottom: 25px;
 		width: 238px;
 		height: 46px;
 		font-size: 14px;

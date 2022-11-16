@@ -5,6 +5,14 @@
 }
 
 @media screen and (max-width: 918px) {
-.profile__title-group {
-	margin-top: 26px;
-}}
+	.profile__title-group {
+		margin-top: 26px;
+		margin-left: 42px;
+	}
+}
+
+@media screen and (max-width: 542px) {
+	.profile__title-group {
+		margin-left: 28px;
+	}
+}

@@ -2,7 +2,6 @@
 	margin: 0;
 	max-width: 282px;
 	background-color: white;
-	list-style-type: none;
 	border-radius: 10px;
 	/* элементы сохраняются в обратном порядке */
 }

@@ -88,12 +88,12 @@
 
   <!--всплывающее окно с формой ===================-->
   <div class="popup">
-    <div class="popup__container>">
-      <form class="form" novalidate>
-        <button class="form__close-button" type="button" aria-label="кнопка Закрыть"></button>
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
+      <form class="form" name="profileInfoForm" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input class="form__field-name" type="text" placeholder="Имя" name="Name" autofocus required>
-        <input class="form__field-description" type="text" placeholder="О себе" name="Description" required>
+        <input class="form__field form__field_name" type="text" placeholder="Имя" name="Name" autofocus required>
+        <input class="form__field form__field_description" type="text" placeholder="О себе" name="Description" required>
         <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
       </form>
     </div>

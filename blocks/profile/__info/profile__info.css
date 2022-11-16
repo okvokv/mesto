@@ -10,6 +10,6 @@
 	.profile__info {
 		margin: 0 auto;
 		max-width: 100%;
-		text-align: center;
+		align-items: center;
 	}
 }

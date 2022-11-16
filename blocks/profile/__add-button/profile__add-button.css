@@ -9,6 +9,7 @@
 	border-radius: 2px;
 	background-color: transparent;
 	background-image: url("../../../images/add-button-vector.svg");
+	background-size: 22px 22px;
 	background-repeat: no-repeat;
 	background-position: center;
 	cursor: pointer;

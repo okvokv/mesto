@@ -1,6 +1,6 @@
 .profile__edit-button {
 	margin: 0;
-	margin-top: 15px;
+	margin-top: 14px;
 	margin-left: 18px;
 	padding: 0;
 	width: 24px;
@@ -9,6 +9,7 @@
 	box-sizing: border-box;
 	background-image: url("../../../images/edit-button-vector.svg");
 	background-color: transparent;
+	background-size: 10px 10px;
 	background-position: center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -16,7 +17,7 @@
 
 @media screen and (max-width: 542px) {
 	.profile__edit-button {
-		margin-top: 10px;
+		margin-top: 9px;
 		margin-left: 10px;
 		width: 18px;
 		height: 18px;
