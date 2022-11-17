@@ -1,17 +1,16 @@
-//Определение констант
+//Определение констант и переменных
 const editBtnElt = document.querySelector('.profile__edit-button');
 
 const pupElt = document.querySelector('.popup');
 
 const closeBtnElt = pupElt.querySelector('.popup__close-button');
 
-const formElt = document.querySelector('.form');
+let formElt = document.querySelector('.form');
+let fieldTop = formElt.querySelector('[name="Name"]');
+let fieldBtm = formElt.querySelector('[name="Description"]');
 
 let nameElt = document.querySelector('.profile__title')
 let descriptionElt = document.querySelector('.profile__subtitle')
-
-let fieldTop = formElt.querySelector('.form__field_name');
-let fieldBtm = formElt.querySelector('.form__field_description');
 
 //Определение функци добавления класса для открытия окна
 let pupOpened = function () {
@@ -27,12 +26,12 @@ let pupClosed = function () {
 };
 
 //Определение функции отправки
-let formSubmit = function () {
-	preventDefault();
+let formSubmit = function (event) {
+	event.preventDefault();
 	// замена значений 
 	nameElt.textContent = fieldTop.value;
 	descriptionElt.textContent = fieldBtm.value;
-	console.log('Отправка!')
+	pupClosed();
 };
 
 //Проверка события нажатия на кнопку редактировать профиль и запуск ф-ии

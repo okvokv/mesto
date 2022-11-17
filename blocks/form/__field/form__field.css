@@ -2,6 +2,7 @@
 	padding: 0;
 	padding-bottom: 9px;
 	margin: 0;
+	margin-bottom: 30px;
 	width: 358px;
 	height: 27px;
 	border: 0;
@@ -13,8 +14,16 @@
 	line-height: 1.21;
 }
 
+.form__field:last-of-type {
+	margin-bottom: 48px;
+}
+
 @media screen and (max-width: 619px) {
 	.form__field {
 		width: 238px;
+	}
+
+	.form__field:last-of-type {
+		margin-bottom: 45px;		
 	}
 }

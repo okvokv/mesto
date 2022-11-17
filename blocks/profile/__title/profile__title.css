@@ -10,9 +10,9 @@
 	overflow: hidden;
 }
 
-@media screen and (max-width: 542px) {
+@media screen and (max-width: 619px) {
 	.profile__title {
-		max-width: 254px;
+		max-width: 224px;
 		font-size: 27px;
 		line-height: 1.22;
 	}

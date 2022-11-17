@@ -1,6 +1,6 @@
 .profile__subtitle {
 	margin: 0;
-	margin-top: 16px;
+	margin-top: 11px;
 	max-width: 294px;
 	font-style: normal;
 	font-weight: 400;
@@ -11,9 +11,9 @@
 	overflow: hidden;
 }
 
-@media screen and (max-width: 542px) {
+@media screen and (max-width: 619px) {
 	.profile__subtitle {
-		margin-top: 14px;
+		margin-top: 8px;
 		max-width: 254px;
 		font-size: 14px;
 	}

@@ -1,9 +1,0 @@
-.form__field_description {
-	margin-bottom: 48px;
-}
-
-@media screen and (max-width: 619px) {
-	.form__field_description {
-		margin-bottom: 45px;
-	}
-}
