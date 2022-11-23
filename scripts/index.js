@@ -9,8 +9,8 @@ let formElt = document.querySelector('.form');
 let fieldTop = formElt.querySelector('[name="Name"]');
 let fieldBtm = formElt.querySelector('[name="Description"]');
 
-let nameElt = document.querySelector('.profile__title')
-let descriptionElt = document.querySelector('.profile__subtitle')
+let nameElt = document.querySelector('.profile__title');
+let descriptionElt = document.querySelector('.profile__subtitle');
 
 //Определение функци добавления класса для открытия окна
 let pupOpened = function () {
@@ -25,7 +25,7 @@ let pupClosed = function () {
 	pupElt.classList.remove('popup_opened');
 };
 
-//Определение функции отправки
+//Определение функции отправки (аргумент - submit  вместо event)
 let formSubmit = function (event) {
 	event.preventDefault();
 	// замена значений 
