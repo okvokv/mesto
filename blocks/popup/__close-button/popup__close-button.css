@@ -12,7 +12,9 @@
 	background-position: center;
 	background-size: 32px 32px;
 	cursor: pointer;
-}
+	transition: .7s;
+	transition: opacity 0;
+	}
 
 @media screen and (max-width: 619px) {
 	.popup__close-button {

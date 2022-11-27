@@ -3,7 +3,8 @@
 	margin-top: 50px;
 	display: flex;
 	justify-content: center;
-}
+	transition: 1s;
+	}
 
 @media screen and (max-width: 619px) {
 	.elements {

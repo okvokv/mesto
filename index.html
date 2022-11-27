@@ -35,46 +35,46 @@
     <!--Секция элементы ==============================================-->
     <section class="elements">
       <ul class="elements__grid">
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
-            alt="фото Карачаевск">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="фото Карачаевск">
           <div class="element__caption">
             <h2 class="element__text">Карачаевск</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg"
-            alt="фото Гора Эльбрус ">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="фото Гора Эльбрус ">
           <div class="element__caption">
             <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg"
-            alt="фото Домбай">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="фото Домбай">
           <div class="element__caption">
             <h2 class="element__text">Домбай</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg"
-            alt="фото Гора Эльбрус">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1404681-unsplash.jpg" alt="фото Гора Эльбрус">
           <div class="element__caption">
             <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg"
-            alt="фото Домбай">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1556355-unsplash.jpg" alt="фото Домбай">
           <div class="element__caption">
             <h2 class="element__text">Домбай</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
-        <li class="element"><img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg"
-            alt="фото Карачаево-Черкессия">
+        <li class="element"><button class="element__trash-button" type="button"></button>
+          <img class="element__image" src="images/kirill-pershin-1088404-unsplash.jpg" alt="фото Карачаево-Черкессия">
           <div class="element__caption">
             <h2 class="element__text">Карачаево-Черкессия</h2>
-            <button class="element__icon" type="button"></button>
+            <button class="element__icon-button" type="button"></button>
           </div>
         </li>
       </ul>
@@ -86,18 +86,53 @@
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <!--всплывающее окно с формой ===================-->
-  <div class="popup">
+  <!--всплывающее окно с формой редактирования профиля ==========-->
+  <div class="popup popup__window_type_edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <form class="form" name="profileInfoForm" novalidate>
+      <form class="form" name="profileEditForm" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input class="form__field" type="text" placeholder="Имя" name="Name" autofocus required>
-        <input class="form__field" type="text" placeholder="О себе" name="Description" required>
+        <input class="form__field" type="text" placeholder="Имя" name="first" autofocus required>
+        <input class="form__field" type="text" placeholder="О себе" name="second" required>
         <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
+
+  <!--всплывающее окно с формой добавления контента ============-->
+  <div class="popup popup__window_type_add">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
+      <form class="form" name="ItemAddForm" novalidate>
+        <h3 class="form__title">Новое место</h3>
+        <input class="form__field" type="text" placeholder="Название" name="first" required>
+        <input class="form__field" type="url" placeholder="Ссылка на картинку" name="second" required>
+        <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <!--всплывающее окно с картинкой ======================-->
+  <div class="popup popup__window_type_img">
+    <div class="popup__container">
+      <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
+      <div>
+        <img class="popup__image" src="images/photo-1559426756-14c161f0dae8_1.jpg" alt="фото Горный Алтай">
+        <p class="popup__image-caption">Горный Алтай</p>
+      </div>
+    </div>
+  </div>
+
+  <!--шаблон для новых карточек ==========================================-->
+  <template class="cardTemplate">
+    <li class="element"><button class="element__trash-button" type="button"></button>
+      <img class="element__image" src=" " alt=" ">
+      <div class="element__caption">
+        <h2 class="element__text">******</h2>
+        <button class="element__icon-button" type="button"></button>
+      </div>
+    </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
