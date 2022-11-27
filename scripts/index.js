@@ -9,9 +9,9 @@ let icnBtnElt = gridObj.querySelector('.element__icon-button');
 const trashBtnElt = gridObj.querySelector('.element__trash-button');
 
 
-const pupEditForm = document.querySelector('.popup__window_type_edit');
-const pupAddForm = document.querySelector('.popup__window_type_add');
-const pupImgForm = document.querySelector('.popup__window_type_img');
+const pupEditForm = document.querySelector('.popup_type_edit');
+const pupAddForm = document.querySelector('.popup_type_add');
+const pupImgForm = document.querySelector('.popup_type_img');
 
 let pupImgElt = pupImgForm.querySelector('.popup__image');
 let pupImgCaptionElt = pupImgForm.querySelector('.popup__image-caption')
