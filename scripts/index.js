@@ -3,22 +3,19 @@ const profileElt = document.querySelector('.profile');
 const editBtnElt = profileElt.querySelector('.profile__edit-button');
 const addBtnElt = profileElt.querySelector('.profile__add-button');
 
-let gridObj = document.querySelector('.elements__grid');
-let imgElt = gridObj.querySelector('.element__image');
-let icnBtnElt = gridObj.querySelector('.element__icon-button');
-const trashBtnElt = gridObj.querySelector('.element__trash-button');
+const gridObj = document.querySelector('.elements__grid');
 
-
+const pupFormNodeList = document.querySelectorAll('.popup');
 const pupEditForm = document.querySelector('.popup_type_edit');
 const pupAddForm = document.querySelector('.popup_type_add');
 const pupImgForm = document.querySelector('.popup_type_img');
 
-let pupImgElt = pupImgForm.querySelector('.popup__image');
-let pupImgCaptionElt = pupImgForm.querySelector('.popup__image-caption')
-
 const closeBtnEditElt = pupEditForm.querySelector('.popup__close-button');
 const closeBtnAddElt = pupAddForm.querySelector('.popup__close-button');
 const closeBtnImgElt = pupImgForm.querySelector('.popup__close-button');
+
+let pupImgElt = pupImgForm.querySelector('.popup__image');
+let pupImgCaptionElt = pupImgForm.querySelector('.popup__image-caption')
 
 //получение значений для заполнения формы
 let prflNameElt = document.querySelector('.profile__title');
@@ -59,99 +56,107 @@ const initialCards = [
 let newCardCreate = function (cardTextElt, cardLinkElt) {
 	let newCard = cardTemplate.querySelector('.element').cloneNode(true);
 	//замена значений 
-	newCard.querySelector('.element__image').src = cardLinkElt;
-	newCard.querySelector('.element__image').alt = 'фото ' + cardTextElt;
-	newCard.querySelector('.element__text').textContent = cardTextElt;
+	let imgElt = newCard.querySelector('.element__image');
+	let captionTextElt = newCard.querySelector('.element__text');
+	const icnBtnElt = newCard.querySelector('.element__icon-button');
+	const trashBtnElt = newCard.querySelector('.element__trash-button');
 
+	imgElt.src = cardLinkElt;
+	imgElt.alt = 'фото ' + cardTextElt;
+	captionTextElt.textContent = cardTextElt;
+
+	//проверка нажатия
+	imgElt.addEventListener('click', () => {
+		//замена значений
+		pupImgElt.src = imgElt.src;
+		pupImgCaptionElt.textContent = imgElt.closest('.element').textContent;
+		pupOpened(2);
+	});
+
+	icnBtnElt.addEventListener('click', () => {
+		icnBtnElt.classList.toggle('element__icon-button_active');
+	});
+
+	trashBtnElt.addEventListener('click', () => {
+		trashBtnElt.closest('.element').remove();
+	});
 	gridObj.prepend(newCard);
-
-	imgEltClck();
-	icnBtnClck();
-	trashBtnClck();
-	return newCard;
 };
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
-let formEditElt = pupEditForm.querySelector('.form');
+const formEditElt = pupEditForm.querySelector('.form');
 let nameElt = formEditElt.querySelector('[name="first"]');
 let descriptionElt = formEditElt.querySelector('[name="second"]');
 
 //Форма добавления контента 
-let formAddElt = pupAddForm.querySelector('.form');
+const formAddElt = pupAddForm.querySelector('.form');
 let captionTextElt = formAddElt.querySelector('[name="first"]');
 let linkElt = formAddElt.querySelector('[name="second"]');
 
-//----------------------------------------------------------------------
-//Определение функции для открывания большой картинки
-let imgEltClck = function () {
-	let imgsNodeList = document.querySelectorAll('.element__image');
-	const imgArr = Array.from(imgsNodeList);
-	imgArr.forEach((imgElt, index) => {
-		imgElt.addEventListener('click', () => {
-			//замена значений
-			pupImgElt.src = imgElt.src;
-			pupImgCaptionElt.textContent = imgElt.closest('.element').textContent;
-			pupImgForm.classList.add('popup_opened');
-		});
-	});
+//------------------------------------------------------------------------
+//Определение функции для закрытия всплывающего окна
+const pupFormArr = Array.from(pupFormNodeList);
+let pupClosed = function (i) {
+	pupFormArr[i].classList.remove('popup_opened');
+	return;
 };
-imgEltClck();
 
-//Определение функции для закрытия большой картинки
-let pupImgClosed = function () {
-	pupImgForm.classList.remove('popup_opened');
+//Определение функции открытия всплывающего окна 
+let pupOpened = function (i) {
+	pupFormArr[i].classList.add('popup_opened');
+	return;
 };
+
+//----------------------------------------------------------------------
+//Определение функции открытия всплывающего окна редактирования профиля
+let pupEditOpened = function () {
+	//заполнение полей
+	nameElt.value = prflNameElt.textContent;
+	descriptionElt.value = prflDescriptionElt.textContent;
+	pupOpened(0);
+};
+
+//-------------------------------------------------------------------------
+//Определение функции открытия всплывающего окна добавления контента
+let pupAddOpened = function () {
+	captionTextElt.value = '';
+	linkElt.value = '';
+	pupOpened(1);
+};
+
+//----------------------------------------------------------------------
+//Определение функции для открывания большой картинки из картинок в HTML д-те
+//let imgsNodeList = document.querySelectorAll('.element__image');
+//const imgArr = Array.from(imgsNodeList);
+//imgArr.forEach((imgElt, index) => {
+//imgElt.addEventListener('click', () => {
+		//замена значений
+//pupImgElt.src = imgElt.src;
+//pupImgCaptionElt.textContent = imgElt.closest('.element').textContent;
+//pupOpened(2);
+//});
+//});
 
 //----------------------------------------------------------------------------
 //Проверка нажатия на кнопкe <Нравится> и реакция 
-let icnBtnClck = function () {
-	let icnBtnsNodeList = document.querySelectorAll('.element__icon-button');
-	const icnBtnsArr = Array.from(icnBtnsNodeList);
-	icnBtnsArr.forEach((icnBtnElt, index) => {
-		icnBtnElt.addEventListener('click', () => {
-			icnBtnElt.classList.toggle('element__icon-button_active');
-		});
-	});
-};
-icnBtnClck();
+//let icnBtnsNodeList = document.querySelectorAll('.element__icon-button');
+//const icnBtnsArr = Array.from(icnBtnsNodeList);
+//icnBtnsArr.forEach((icnBtnElt, index) => {
+//const icnBtnElt = gridObj.querySelector('.element__icon-button');
+//icnBtnElt.addEventListener('click', () => {
+//icnBtnElt.classList.toggle('element__icon-button_active');
+//});
+//});
 
 //Проверка нажатия на кнопкe <Удалить> и реакция
-let trashBtnClck = function () {
-	let trashBtnsNodeList = document.querySelectorAll('.element__trash-button');
-	const trashBtnsArr = Array.from(trashBtnsNodeList);
-	trashBtnsArr.forEach((trashBtnElt, index) => {
-		trashBtnElt.addEventListener('click', () => {
-			trashBtnElt.closest('.element').remove();
-		});
-	});
-};
-trashBtnClck();
-
-//---------------------------------------------------------------------
-//Определение функции открытия всплывающего окна редактирования профиля
-let pupEditOpened = function () {
-	pupEditForm.classList.add('popup_opened');
-	//задание содержания полей формы 
-	fieldEditFirst.value = nameElt.textContent;
-	fieldEditSecond.value = descriptionElt.textContent;
-};
-
-//Определение функции закрытия всплывающего окна редактирования профиля
-let pupEditClosed = function () {
-	pupEditForm.classList.remove('popup_opened');
-};
-//-------------------------------------------------------------------------
-
-//Определение функции открытия всплывающего окна добавления контента
-let pupAddOpened = function () {
-	pupAddForm.classList.add('popup_opened');
-};
-
-//Определение функции закрытия всплывающего окна добавления контента
-let pupAddClosed = function () {
-	pupAddForm.classList.remove('popup_opened');
-};
+//let trashBtnsNodeList = document.querySelectorAll('.element__trash-button');
+//const trashBtnsArr = Array.from(trashBtnsNodeList);
+//trashBtnsArr.forEach((trashBtnElt, index) => {
+//trashBtnElt.addEventListener('click', () => {
+//trashBtnElt.closest('.element').remove();
+//});
+//});
 
 //----------------------------------------------------------------------------
 //Определение функции отправки содержания формы редактирования профиля (event eq. submit)
@@ -160,8 +165,7 @@ let formEditSubmit = function (event) {
 	// замена значений 
 	prflNameElt.textContent = nameElt.value;
 	prflDescriptionElt.textContent = descriptionElt.value;
-	pupEditClosed();
-
+	pupClosed(0);
 	//отключить проверку нажатия на кнопку Закрыть и Сохранить
 };
 
@@ -170,27 +174,9 @@ let formEditSubmit = function (event) {
 let formAddSubmit = function (event) {
 	event.preventDefault();
 	newCardCreate(captionTextElt.value, linkElt.value);
-	pupAddClosed();
+	pupClosed(1);
 	//отключить проверку нажатия на кнопку <Закрыть> и <Сохранить>
-
 };
-
-//----------------------------------------------------------------------------
-//Проверка нажатия на кнопки открытия форм 
-editBtnElt.addEventListener('click', pupEditOpened);
-addBtnElt.addEventListener('click', pupAddOpened);
-
-//Если форма открыта (проверка открытия формы): 
-//отключить проверки нажатия на кнопки открытия формы 
-//editBtnElt.removeEventListener();
-//addBtnElt.removeEventListener();
-
-//----------------------------------------------------------------------------
-//проверка нажатия на кнопку <Закрыть>
-closeBtnEditElt.addEventListener('click', pupEditClosed);
-closeBtnAddElt.addEventListener('click', pupAddClosed);
-closeBtnImgElt.addEventListener('click', pupImgClosed);
-
 
 //-----------------------------------------------------------------------------
 //проверка нажатия на кнопку <Сохранить>
@@ -199,7 +185,6 @@ formAddElt.addEventListener('submit', formAddSubmit);
 //event.target.setAttribute('disabled', true); сделать кнопку неактивной
 
 //-----------------------------------------------------------------------
-
 //Определение функции добавления карточек из списка
 initialCards.reverse().forEach((newCard, index) => {
 	cardTextElt = initialCards[index].name;
@@ -208,17 +193,23 @@ initialCards.reverse().forEach((newCard, index) => {
 	return newCard;
 });
 
+//----------------------------------------------------------------------------
+//Проверка нажатия на кнопки открытия форм 
+editBtnElt.addEventListener('click', pupEditOpened);
+addBtnElt.addEventListener('click', pupAddOpened);
+
+//Если форма открыта (проверка открытия формы):
+//отключить проверки нажатия на кнопки открытия формы
+//editBtnElt.removeEventListener();
+//addBtnElt.removeEventListener();
+
+//Проверка нажатия на кнопку <Закрыть>
+closeBtnEditElt.addEventListener('click', pupFormArr[0].classList.remove('popup_opened'));
+closeBtnAddElt.addEventListener('click', pupFormArr[1].classList.remove('popup_opened'));
+closeBtnImgElt.addEventListener('click', pupFormArr[2].classList.remove('popup_opened'));
 //Рабочая зона-----------------------------------------------------
 //---------------------------------------------------------------------
 //Определение функции маркирования картинки
-//let icnBtnFilled = function () {
-//	icnBtnElt.classList.closest('element__icon-button').toggle('element__icon-button_active')
-//};
-
-//Определение функции удаления картинки
-//let imgDel = function () {
-//	let gridElt = trashBtnElt.closest('.element').remove();
-//};
 
 //	const gridElt = document.createElement('li');
 	//  gridElt.classList.add('element');
