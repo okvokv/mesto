@@ -113,14 +113,14 @@ function openPup(pupType) {
 			shutPup(pupType);
 		});
 	});
-	editBtnElt.removeEventListener();
-	addBtnElt.removeEventListener();
+	//editBtnElt.removeEventListener();
+	//addBtnElt.removeEventListener();
 };
 //Определение функции для закрытия всплывающего окна
 function shutPup(pupType) {
 	pupType.classList.remove('popup_opened');
 	closeBtnsNodeList.forEach((closeBtnElt, index) => {
-		closeBtnElt.removeEventListener();
+	//closeBtnElt.removeEventListener();
 	});
 };
 //----------------------------------------------------------------------------
