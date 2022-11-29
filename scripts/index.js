@@ -18,8 +18,8 @@ const pupImgElt = pupImg.querySelector('.popup__image');
 const pupImgCptnElt = pupImg.querySelector('.popup__image-caption')
 
 //получение значений для заполнения формы
-let prflNameElt = profileElt.querySelector('.profile__title');
-let prflDescriptionElt = profileElt.querySelector('.profile__subtitle');
+const prflNameElt = profileElt.querySelector('.profile__title');
+const prflDescriptionElt = profileElt.querySelector('.profile__subtitle');
 
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
@@ -72,7 +72,7 @@ const createNewCard = function (cardTextElt, cardLinkElt) {
 		pupImgElt.alt = imgElt.alt;
 		pupImgCptnElt.textContent = cardTextElt;
 
-		openPup(pupImg);
+		openPopup(pupImg);
 	});
 	//проверка нажатия на кнопку <Like>
 	icnBtnElt.addEventListener('click', (event) => {
@@ -94,40 +94,22 @@ const addCard = function (cardTextElt, cardLinkElt) {
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
 const editFormElt = document.forms["EditForm"];
-let nameElt = editFormElt.querySelector('[name="first"]');
-let descriptionElt = editFormElt.querySelector('[name="second"]');
+const nameElt = editFormElt.querySelector('[name="first"]');
+const descriptionElt = editFormElt.querySelector('[name="second"]');
 
 //Форма добавления контента 
 const addFormElt = document.forms["AddForm"];
-let cptnTextElt = addFormElt.querySelector('[name="first"]');
-let linkElt = addFormElt.querySelector('[name="second"]');
+const cptnTextElt = addFormElt.querySelector('[name="first"]');
+const linkElt = addFormElt.querySelector('[name="second"]');
 
 //------------------------------------------------------------------------
 //Определение функции открытия всплывающего окна 
-function openPup(pupType) {
+function openPopup(pupType) {
 	pupType.classList.add('popup_opened');
-	//проверка нажатия на кнопку <Закрыть>
-	closeBtnsNodeList.forEach((closeBtnElt, index) => {
-		const pupType = closeBtnElt.closest('.popup');
-		closeBtnElt.addEventListener('click', () => {
-			shutPup(pupType);
-		});
-	});
-	editBtnElt.removeEventListener('click', () => {
-		openPup(pupEdit);
-	});
-	addBtnElt.removeEventListener('click', () => {
-		openPup(pupAdd);
-	});
 };
 //Определение функции для закрытия всплывающего окна
-function shutPup(pupType) {
+function shutPopup(pupType) {
 	pupType.classList.remove('popup_opened');
-	closeBtnsNodeList.forEach((closeBtnElt, index) => {
-	closeBtnElt.removeEventListener('click', () => {
-			shutPup(pupType);
-	});
-	});
 };
 //----------------------------------------------------------------------------
 //Определение функции отправки содержания формы редактирования профиля (event eq. submit)
@@ -136,7 +118,7 @@ const submitEditForm = function (event) {
 	// замена значений 
 	prflNameElt.textContent = nameElt.value;
 	prflDescriptionElt.textContent = descriptionElt.value;
-	shutPup(pupEdit);
+	shutPopup(pupEdit);
 	//отключить проверку нажатия на кнопку Закрыть и Сохранить
 };
 
@@ -146,7 +128,7 @@ const submitAddForm = function (event) {
 	event.preventDefault();
 	addCard(cptnTextElt.value, linkElt.value);
 	event.target.reset();
-	shutPup(pupAdd);
+	shutPopup(pupAdd);
 };
 
 //Определение функции добавления карточек из массива
@@ -161,11 +143,20 @@ initialCards.reverse().forEach((cardElt, index) => {
 editBtnElt.addEventListener('click', () => {
 	nameElt.value = prflNameElt.textContent;
 	descriptionElt.value = prflDescriptionElt.textContent;
-	openPup(pupEdit);
+	openPopup(pupEdit);
 });
 
 addBtnElt.addEventListener('click', () => {
-	openPup(pupAdd);
+	openPopup(pupAdd);
+});
+
+//-----------------------------------------------------------------------------
+//проверка нажатия на кнопку <Закрыть>
+closeBtnsNodeList.forEach((closeBtnElt, index) => {
+	const pupType = closeBtnElt.closest('.popup');
+	closeBtnElt.addEventListener('click', () => {
+		shutPopup(pupType);
+	});
 });
 
 //-----------------------------------------------------------------------------
