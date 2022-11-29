@@ -107,7 +107,7 @@ const linkElt = addFormElt.querySelector('[name="second"]');
 function openPopup(pupType) {
 	pupType.classList.add('popup_opened');
 };
-//Определение функции для закрытия всплывающего окна
+//Определение функции закрытия всплывающего окна
 function shutPopup(pupType) {
 	pupType.classList.remove('popup_opened');
 };
@@ -119,7 +119,6 @@ const submitEditForm = function (event) {
 	prflNameElt.textContent = nameElt.value;
 	prflDescriptionElt.textContent = descriptionElt.value;
 	shutPopup(pupEdit);
-	//отключить проверку нажатия на кнопку Закрыть и Сохранить
 };
 
 //----------------------------------------------------------------------------
@@ -163,4 +162,4 @@ closeBtnsNodeList.forEach((closeBtnElt, index) => {
 //Проверка нажатия на кнопку <Сохранить>
 editFormElt.addEventListener('submit', submitEditForm);
 addFormElt.addEventListener('submit', submitAddForm);
-//event.target.setAttribute('disabled', true); если ничего не введено сделать кнопку неактивной, чтобы пустая карточка не образовывалась
+//event.target.setAttribute('disabled', true); если ничего не введено сделать кнопку неактивной, чтобы не создавалась пустая карточка 
