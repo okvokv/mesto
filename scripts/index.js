@@ -75,12 +75,12 @@ const createNewCard = function (cardTextElt, cardLinkElt) {
 		openPup(pupImg);
 	});
 	//проверка нажатия на кнопку <Like>
-	icnBtnElt.addEventListener('click', () => {
-		icnBtnElt.classList.toggle('element__icon-button_active');
+	icnBtnElt.addEventListener('click', (event) => {
+		event.target.classList.toggle('element__icon-button_active');
 	});
 	//проверка нажатия на кнопку <Удалить> 
-	trashBtnElt.addEventListener('click', () => {
-		trashBtnElt.closest('.element').remove();
+	trashBtnElt.addEventListener('click', (event) => {
+		event.target.closest('.element').remove();
 	});
 	return newCard;
 };
@@ -113,14 +113,20 @@ function openPup(pupType) {
 			shutPup(pupType);
 		});
 	});
-	//editBtnElt.removeEventListener();
-	//addBtnElt.removeEventListener();
+	editBtnElt.removeEventListener('click', () => {
+		openPup(pupEdit);
+	});
+	addBtnElt.removeEventListener('click', () => {
+		openPup(pupAdd);
+	});
 };
 //Определение функции для закрытия всплывающего окна
 function shutPup(pupType) {
 	pupType.classList.remove('popup_opened');
 	closeBtnsNodeList.forEach((closeBtnElt, index) => {
-	//closeBtnElt.removeEventListener();
+	closeBtnElt.removeEventListener('click', () => {
+			shutPup(pupType);
+	});
 	});
 };
 //----------------------------------------------------------------------------
@@ -166,4 +172,4 @@ addBtnElt.addEventListener('click', () => {
 //Проверка нажатия на кнопку <Сохранить>
 editFormElt.addEventListener('submit', submitEditForm);
 addFormElt.addEventListener('submit', submitAddForm);
-//event.target.setAttribute('disabled', true); сделать кнопку неактивной
+//event.target.setAttribute('disabled', true); если ничего не введено сделать кнопку неактивной, чтобы пустая карточка не образовывалась
