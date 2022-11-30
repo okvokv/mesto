@@ -93,12 +93,12 @@ const addCard = function (cardTextElt, cardLinkElt) {
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
-const editFormElt = document.editForm;
+const editFormElt = document.forms["editForm"];
 const nameElt = editFormElt.first;
 const descriptionElt = editFormElt.second;
 
 //Форма добавления контента 
-const addFormElt = document.addForm;
+const addFormElt = document.forms["addForm"];
 const cptnTextElt = addFormElt.first;
 const linkElt = addFormElt.second;
 
