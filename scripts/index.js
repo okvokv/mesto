@@ -17,7 +17,7 @@ const closeBtnsNodeList = document.querySelectorAll('.popup__close-button');
 const pupImgElt = pupImg.querySelector('.popup__image');
 const pupImgCptnElt = pupImg.querySelector('.popup__image-caption')
 
-//получение значений для заполнения формы
+//получение значений для заполнения формы редактирования профиля
 const prflNameElt = profileElt.querySelector('.profile__title');
 const prflDescriptionElt = profileElt.querySelector('.profile__subtitle');
 
@@ -93,14 +93,14 @@ const addCard = function (cardTextElt, cardLinkElt) {
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
-const editFormElt = document.forms["EditForm"];
-const nameElt = editFormElt.querySelector('[name="first"]');
-const descriptionElt = editFormElt.querySelector('[name="second"]');
+const editFormElt = document.editForm;
+const nameElt = editFormElt.first;
+const descriptionElt = editFormElt.second;
 
 //Форма добавления контента 
-const addFormElt = document.forms["AddForm"];
-const cptnTextElt = addFormElt.querySelector('[name="first"]');
-const linkElt = addFormElt.querySelector('[name="second"]');
+const addFormElt = document.addForm;
+const cptnTextElt = addFormElt.first;
+const linkElt = addFormElt.second;
 
 //------------------------------------------------------------------------
 //Определение функции открытия всплывающего окна 
