@@ -1,0 +1,12 @@
+.form__submit-button_disabled {
+	border: 1px solid #000000;
+	border-radius: 2px;
+	box-sizing: border-box;
+	color: #000000;
+	background-color: #E5E5E5;
+	opacity: .2;
+}
+
+.form__submit-button_disabled:hover {
+	opacity: .2;
+}

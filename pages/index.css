@@ -41,3 +41,6 @@
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__field/form__field.css);
 @import url(../blocks/form/__submit-button/form__submit-button.css);
+@import url(../blocks/form/__submit-button/_disabled/form__submit-button_disabled.css);
+@import url(../blocks/form/__error-message/form__error-message.css);
+@import url(../blocks/form/__error-message/_visible/form__error-message_visible.css);

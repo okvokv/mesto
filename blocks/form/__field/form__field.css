@@ -2,11 +2,10 @@
 	padding: 0;
 	padding-bottom: 9px;
 	margin: 0;
-	margin-bottom: 30px;
 	width: 358px;
 	height: 27px;
 	border: 0;
-	border-bottom: 1px solid rgba(0, 0, 0, .2);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 	font-style: normal;
 	font-weight: 400;
@@ -14,16 +13,8 @@
 	line-height: 1.21;
 }
 
-.form__field:last-of-type {
-	margin-bottom: 48px;
-}
-
 @media screen and (max-width: 619px) {
 	.form__field {
 		width: 238px;
-	}
-
-	.form__field:last-of-type {
-		margin-bottom: 45px;		
 	}
 }
