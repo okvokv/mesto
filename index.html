@@ -49,12 +49,12 @@
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
       <form class="form" name="editForm" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input class="form__field" type="text" placeholder="Имя" name="first" autofocus required minlength="2"
+        <input class="form__field form__field_type_name" type="text" placeholder="Имя" name="Name" autofocus required minlength="2"
           maxlength="40">
-        <span class="form__error-message" id="first-error"></span>
-        <input class="form__field" type="text" placeholder="О себе" name="second" required minlength="2"
+        <span class="form__error-message" id="Name-error"></span>
+        <input class="form__field form__field_type_description" type="text" placeholder="О себе" name="Description" required minlength="2"
           maxlength="200">
-        <span class="form__error-message" id="second-error"></span>
+        <span class="form__error-message" id="Description-error"></span>
         <button class="form__submit-button form__submit-button_disabled" type="submit" disabled
           aria-label="кнопка Сохранить">Сохранить</button>
       </form>
@@ -67,11 +67,11 @@
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
       <form class="form" name="addForm" novalidate>
         <h3 class="form__title">Новое место</h3>
-        <input class="form__field" type="text" placeholder="Название" name="third" required minlength="2"
+        <input class="form__field form__field_type_cardname" type="text" placeholder="Название" name="cardName" required minlength="2"
           maxlength="30">
-        <span class="form__error-message" id="third-error"></span>
-        <input class="form__field" type="url" placeholder="Ссылка на картинку" name="fourth" required>
-        <span class="form__error-message" id="fourth-error"></span>
+        <span class="form__error-message" id="cardName-error"></span>
+        <input class="form__field form__field_type_cardlink" type="url" placeholder="Ссылка на картинку" name="cardLink" required>
+        <span class="form__error-message" id="cardLink-error"></span>
         <button class="form__submit-button form__submit-button_disabled" type="submit" disabled
           aria-label="кнопка Сохранить">Сохранить</button>
       </form>
