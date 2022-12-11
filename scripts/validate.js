@@ -4,34 +4,34 @@ const config = (
     formElt: '.form',
     formField: '.form__field',
     errorMessage: '.form__error-message',
-    errorMessVisible: '.form__error-message_visible',
+    errorMessVisible: 'form__error-message_visible',
     submitBtnElt: '.form__submit-button',
-    submitBtnEltDisabled: '.form__submit-button_disabled'
+    submitBtnEltDisabled: 'form__submit-button_disabled'
   }
 );
 
 //Функция добавления класса видимости сообщения об ошибке
-function showErrorMessage(field, error) {
-  //error.classList.add('form__error-message_visible');
+function showErrorMessage(field, error, config) {
+  //error.classList.add(config.errorMessVisible);
   //подчеркнуть и вывести в форму браузерное сообщение об ошибке
   field.style.borderBottom = '1px solid rgba(248, 4, 4, 1)';
   error.textContent = field.validationMessage;
 };
 
 //Функция удаления класса видимости сообщения об ошибке
-function hideErrorMessage(field, error) {
-  //error.classList.remove('form__error-message_visible');
+function hideErrorMessage(field, error, config) {
+  //error.classList.remove(config.errorMessVisible);
   //сброс подчёркивания и сообщения об ошибке
-  field.style.borderBottom = '';
+  field.style.borderBottom = '1px solid rgba(0, 0, 0, 0.2)';
   error.textContent = '';
 };
 
 //Функция проверки валидности поля
 function checkFieldValidity(field, error) {
   if (field.validity.valid) {
-    hideErrorMessage(field, error);
+    hideErrorMessage(field, error, config);
   } else {
-    showErrorMessage(field, error);
+    showErrorMessage(field, error, config);
   }
 };
 
@@ -43,13 +43,13 @@ function checkFormValidity(fields) {
 };
 
 //Функция смены состояния кнопки <Сохранить>
-function setSubmitBtnState(button, fields) {
+function setSubmitBtnState(button, fields, config) {
   if (checkFormValidity(fields)) {
     button.removeAttribute('disabled', true);
-    button.classList.remove('form__submit-button_disabled');
+    button.classList.remove(config.submitBtnEltDisabled);
   } else {
     button.setAttribute('disabled', true);
-    button.classList.add('form__submit-button_disabled');
+    button.classList.add(config.submitBtnEltDisabled);
   };
 };
 
@@ -64,7 +64,7 @@ function enableValidation(config) {
       field.addEventListener('input', () => {
         const errorPlace = form.querySelector(`#${field.name}-error`);
         checkFieldValidity(field, errorPlace);
-        setSubmitBtnState(button, fields);
+        setSubmitBtnState(button, fields, config);
       });
     });
   });

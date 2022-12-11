@@ -4,7 +4,7 @@ const profileElt = document.querySelector('.profile');
 const editBtnElt = profileElt.querySelector('.profile__edit-button');
 const addBtnElt = profileElt.querySelector('.profile__add-button');
 
-const gridObj = document.querySelector('.elements__grid');
+const cardsGrid = document.querySelector('.elements__grid');
 
 //всплывающие окна
 const pupNodeList = document.querySelectorAll('.popup')
@@ -21,106 +21,31 @@ const prflDescriptionElt = profileElt.querySelector('.profile__subtitle');
 
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
-//Массив карточек для таблицы
-const initialCards = [
-	{
-		name: 'Архыз',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-	},
-	{
-		name: 'Челябинская область',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-	},
-	{
-		name: 'Иваново',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-	},
-	{
-		name: 'Камчатка',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-	},
-	{
-		name: 'Холмогорский район',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-	},
-	{
-		name: 'Байкал',
-		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-	}
-];
-
 //------------------------------------------------------------------------------
 //Функция создания новой карточки
 function createNewCard(cardTextElt, cardLinkElt) {
 	const newCard = cardTemplate.querySelector('.element').cloneNode(true);
 	const newImgElt = newCard.querySelector('.element__image');
 	const newTextElt = newCard.querySelector('.element__text');
+	const icnBtnElt = newCard.querySelector('.element__icon-button');
+	const trashBtnElt = newCard.querySelector('.element__trash-button');
 	//заполнение 
 	newImgElt.src = cardLinkElt;
 	newImgElt.alt = 'фото: ' + cardTextElt;
 	newTextElt.textContent = cardTextElt;
-	return newCard;
-};
 
-//Функция добавления карточки в таблицу
-function addCard(cardTextElt, cardLinkElt) {
-	newCard = createNewCard(cardTextElt, cardLinkElt);
-	gridObj.prepend(newCard);
-};
-
-//-------------------------------------------------------------------------
-//Форма редактирования профиля
-const editFormElt = document.editForm;
-const nameElt = editFormElt.first;
-const descriptionElt = editFormElt.second;
-const submitBtnEdElt = editFormElt.querySelector('.form__submit-button');
-//автозаполнение полей формы из профиля 
-nameElt.value = prflNameElt.textContent;
-descriptionElt.value = prflDescriptionElt.textContent;
-
-
-//Форма добавления контента 
-const addFormElt = document.addForm;
-const textElt = addFormElt.third;
-const linkElt = addFormElt.fourth;
-const submitBtnAdElt = addFormElt.querySelector('.form__submit-button');
-
-//-----------------------------------------------------------------------
-//Функция реакции на нажатие <Esc>
-function checkEscState(event, pupType) {
-	if (event.key === 'Escape') {
-		shutPopup(pupType);
-	};
-};
-//------------------------------------------------------------------------
-//Функция открытия всплывающего окна 
-function openPopup(pupType) {
-	pupType.classList.add('popup_opened');
-	//проверка нажатия на кнопку <Esc>
-	const controlKey = (event) => checkEscState(event, pupType);
-	document.addEventListener('keydown', controlKey);
-};
-
-//Функция закрытия всплывающего окна
-function shutPopup(pupType) {
-	pupType.classList.remove('popup_opened');
-	//снятие слушателя
-	document.removeEventListener('keydown', controlKey);
-};
-
-//------------------------------------------------------------------------------
-//Проверка нажатия на кнопки
-document.addEventListener('click', (event) => {
-	//нажатие на кнопку <Like>
-	if (event.target.classList.contains('element__icon-button')) {
+	//присоединение проверки нажатия на кнопку <Like>
+	icnBtnElt.addEventListener('click', (event) => {
 		event.target.classList.toggle('element__icon-button_active');
-	};
-	//нажатие на кнопку <Удалить>
-	if (event.target.classList.contains('element__trash-button')) {
+	});
+
+	//присоединение проверки нажатия на кнопку <Удалить> 
+	trashBtnElt.addEventListener('click', (event) => {
 		event.target.closest('.element').remove();
-	};
-	//нажатие на картинку
-	if (event.target.classList.contains('element__image')) {
+	});
+
+	//присоединение проверки нажатия на картинку
+	newImgElt.addEventListener('click', (event) => {
 		//заполнение
 		pupImgElt.src = event.target.src;
 		pupImgElt.alt = event.target.alt;
@@ -128,15 +53,66 @@ document.addEventListener('click', (event) => {
 		const imgTextElt = elementElt.querySelector('.element__text');
 		pupImgTextElt.textContent = imgTextElt.textContent;
 		openPopup(pupImg);
+	});
+	return newCard;
+};
+
+//Функция добавления карточки в таблицу
+function addCard(cardTextElt, cardLinkElt) {
+	newCard = createNewCard(cardTextElt, cardLinkElt);
+	cardsGrid.prepend(newCard);
+};
+
+//-------------------------------------------------------------------------
+//Форма редактирования профиля
+const editFormElt = document.forms.editForm;
+const nameElt = editFormElt.elements.first;
+const descriptionElt = editFormElt.elements.second;
+const submitBtnEdElt = editFormElt.querySelector('.form__submit-button');
+
+//Форма добавления контента 
+const addFormElt = document.forms.addForm;
+const textElt = addFormElt.elements.third;
+const linkElt = addFormElt.elements.fourth;
+const submitBtnAdElt = addFormElt.querySelector('.form__submit-button');
+
+//-----------------------------------------------------------------------
+//Функция реакции на нажатие <Esc>
+function checkEscState(event, popupType) {
+	if (event.key === 'Escape') {
+		shutPopup(popupType);
 	};
-	//нажатие на кнопку редактировать профиль 
-	if (event.target.classList.contains('profile__edit-button')) {
-		openPopup(pupEdit);
-	};
-	//нажатие на кнопку добавления контента
-	if (event.target.classList.contains('profile__add-button')) {
-		openPopup(pupAdd);
-	};
+};
+
+//function controlKey();
+//------------------------------------------------------------------------
+//Функция открытия всплывающего окна 
+function openPopup(popupType) {
+	popupType.classList.add('popup_opened');
+	//проверка нажатия на кнопку <Esc>
+	const controlKey = (event) => checkEscState(event, popupType);
+	document.addEventListener('keydown', controlKey);
+};
+
+//Функция закрытия всплывающего окна
+function shutPopup(popupType) {
+	popupType.classList.remove('popup_opened');
+	//снятие слушателя
+	document.removeEventListener('keydown', controlKey);
+};
+
+//------------------------------------------------------------------------------
+//Проверка нажатия на кнопку редактировать профиль 
+editBtnElt.addEventListener('click', (event) => {
+	//автозаполнение полей формы из профиля 
+	nameElt.value = prflNameElt.textContent;
+	descriptionElt.value = prflDescriptionElt.textContent;
+	openPopup(pupEdit);
+});
+
+//Проверка нажатия на кнопку добавления контента
+addBtnElt.addEventListener('click', (event) => {
+	openPopup(pupAdd);
 });
 
 //-----------------------------------------------------------------------------
@@ -162,10 +138,10 @@ function submitAddForm(event) {
 
 //----------------------------------------------------------------------------
 //проверка нажатия на кнопку <Закрыть> и внешнюю часть всплывающего окна
-pupNodeList.forEach((pupType, index) => {
-	pupType.addEventListener('click', (event) => {
-		if ((event.target === event.currentTarget) || (event.target === pupType.querySelector('.popup__close-button')) || (event.target === pupImgElt)) {
-			shutPopup(pupType);
+pupNodeList.forEach((popupType, index) => {
+	popupType.addEventListener('click', (event) => {
+		if ((event.target === event.currentTarget) || (event.target === popupType.querySelector('.popup__close-button')) || (event.target === pupImgElt)) {
+			shutPopup(popupType);
 		};
 	});
 });
