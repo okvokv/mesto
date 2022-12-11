@@ -84,7 +84,7 @@ function checkEscState(event, popupType) {
 	};
 };
 
-//function controlKey();
+function controlKey() {};
 //------------------------------------------------------------------------
 //Функция открытия всплывающего окна 
 function openPopup(popupType) {
