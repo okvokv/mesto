@@ -97,15 +97,15 @@ function checkEscState(event, pupType) {
 function openPopup(pupType) {
 	pupType.classList.add('popup_opened');
 	//проверка нажатия на кнопку <Esc>
-	//const controlKey = (event) => checkEscState(event, pupType);
-	//document.addEventListener('keydown', controlKey);
+	const controlKey = (event) => checkEscState(event, pupType);
+	document.addEventListener('keydown', controlKey);
 };
 
 //Функция закрытия всплывающего окна
 function shutPopup(pupType) {
 	pupType.classList.remove('popup_opened');
 	//снятие слушателя
-	//document.removeEventListener('keydown', controlKey);
+	document.removeEventListener('keydown', controlKey);
 };
 
 //------------------------------------------------------------------------------
