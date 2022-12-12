@@ -111,8 +111,8 @@ addButton.addEventListener('click', (event) => {
 	openPopup(addCardPopup);
 });
 
+//Для всплывающих окон:
 //-----------------------------------------------------------------------------
-//Для всплывающих окон
 //функция отправки содержания формы редактирования профиля (event eq. submit)
 function submitEditForm(event) {
 	event.preventDefault();
