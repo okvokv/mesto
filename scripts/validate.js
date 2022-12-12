@@ -22,7 +22,7 @@ function showErrorMessage(field, error, config) {
 function hideErrorMessage(field, error, config) {
   //error.classList.remove(config.errorMessVisible);
   //сброс подчёркивания и сообщения об ошибке
-  field.style.borderBottom = '1px solid rgba(0, 0, 0, 0.2)';
+  field.style.borderBottom = '';
   error.textContent = '';
 };
 
