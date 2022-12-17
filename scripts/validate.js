@@ -37,8 +37,8 @@ function checkFieldValidity(field, error) {
 
 //Функция проверки валидности формы
 function checkFormValidity(fields) {
-  return fields.every((field) => {
-    return field.validity.valid
+  return fields.every(field => {
+    return field.validity.valid;
   });
 };
 
@@ -63,6 +63,7 @@ function enableValidation(config) {
     fields.forEach(field => {
       field.addEventListener('input', () => {
         const errorPlace = form.querySelector(`#${field.name}-error`);
+        console.log(errorPlace)
         checkFieldValidity(field, errorPlace);
         setSubmitBtnState(button, fields, config);
       });

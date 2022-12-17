@@ -1,7 +1,7 @@
 .form__error-message {
 	/*visibility: hidden;*/
 	margin: 0;
-	margin-top: 1px;
+	margin-top: 2px;
 	width: 358px;
 	height: 30px;
 	font-style: normal;
@@ -12,7 +12,7 @@
 }
 
 .form__error-message:last-of-type {
-	margin-bottom: 17px;
+	margin-bottom: 16px;
 }
 
 @media screen and (max-width: 619px) {
@@ -21,6 +21,6 @@
 	}
 
 	.form__error-message:last-of-type {
-		margin-bottom: 14px;
+		margin-bottom: 13px;
 	}
 }

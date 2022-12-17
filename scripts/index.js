@@ -35,23 +35,21 @@ function createNewCard(cardTextElt, cardLinkElt) {
 	newImgText.textContent = cardTextElt;
 
 	//присоединение проверки нажатия на кнопку <Like>
-	icnButton.addEventListener('click', (event) => {
-		event.target.classList.toggle('element__icon-button_active');
+	icnButton.addEventListener('click', () => {
+		icnButton.classList.toggle('element__icon-button_active');
 	});
 
 	//присоединение проверки нажатия на кнопку <Удалить> 
-	trashButton.addEventListener('click', (event) => {
-		event.target.closest('.element').remove();
+	trashButton.addEventListener('click', () => {
+		newCard.remove();
 	});
 
 	//присоединение проверки нажатия на картинку
-	newImg.addEventListener('click', (event) => {
+	newImg.addEventListener('click', () => {
 		//заполнение
-		popupLargeImage.src = event.target.src;
-		popupLargeImage.alt = event.target.alt;
-		const elementElt = event.target.closest('.element')
-		const elementText = elementElt.querySelector('.element__text');
-		largeImageText.textContent = elementText.textContent;
+		popupLargeImage.src = newImg.src;
+		popupLargeImage.alt = newImg.alt;
+		largeImageText.textContent = newImgText.textContent;
 		openPopup(imagePopup);
 	});
 	return newCard;
@@ -78,7 +76,8 @@ const inputCardLink = addCardForm.querySelector('.form__field_type_cardlink');
 //Функция реакции на нажатие <Esc>
 function checkEscState(event) {
 	if (event.key === 'Escape') {
-		shutPopup();
+		const popupType = document.querySelector('.popup_opened');
+		shutPopup(popupType);
 	};
 };
 
@@ -91,8 +90,8 @@ function openPopup(popupType) {
 };
 
 //Функция закрытия всплывающего окна
-function shutPopup() {
-	document.querySelector('.popup_opened').classList.remove('popup_opened');
+function shutPopup(popupType) {
+	popupType.classList.remove('popup_opened');
 	//снятие слушателя
 	document.removeEventListener('keydown', checkEscState);
 };
@@ -119,7 +118,7 @@ function submitEditForm(event) {
 	//замена значений 
 	userName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
-	shutPopup();
+	shutPopup(editProfilePopup);
 };
 
 //функция отправки содержания формы добавления контента
@@ -129,16 +128,16 @@ function submitAddForm(event) {
 	addNewCard(inputCardName.value, inputCardLink.value);
 	//сброс полей
 	event.target.reset();
-	shutPopup();
+	shutPopup(addCardPopup);
 };
 
 //----------------------------------------------------------------------------
 //проверка нажатия на кнопку <Закрыть> и внешнюю часть всплывающего окна
 popups.forEach((popupType, index) => {
-	const popupCloseButton = popupType.querySelector('.popup__close-button');
 	popupType.addEventListener('click', (event) => {
+		const popupCloseButton = event.target.closest('.popup__close-button');
 		if ((event.target === event.currentTarget) || (event.target === popupCloseButton) || (event.target === popupLargeImage)) {
-			shutPopup();
+			shutPopup(popupType);
 		};
 	});
 });
