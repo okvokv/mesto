@@ -1,3 +1,7 @@
+import { initialCards, config } from './constants.js'
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 //Определение констант и переменных
 //кнопки
 const profileElt = document.querySelector('.profile');
@@ -10,56 +14,15 @@ const cardsGrid = document.querySelector('.elements__grid');
 const popups = document.querySelectorAll('.popup')
 const editProfilePopup = document.querySelector('.popup_type_edit');
 const addCardPopup = document.querySelector('.popup_type_add');
-const imagePopup = document.querySelector('.popup_type_img');
 
+const imagePopup = document.querySelector('.popup_type_img');
 const popupLargeImage = imagePopup.querySelector('.popup__image');
-const largeImageText = imagePopup.querySelector('.popup__image-caption');
+
+const cardTemplate = document.querySelector('.cardTemplate').content;
 
 //получение значений для заполнения формы редактирования профиля
 const userName = profileElt.querySelector('.profile__title');
 const userDescription = profileElt.querySelector('.profile__subtitle');
-
-const cardTemplate = document.querySelector('.cardTemplate').content;
-
-//------------------------------------------------------------------------------
-//Функция создания новой карточки
-function createNewCard(cardTextElt, cardLinkElt) {
-	const newCard = cardTemplate.querySelector('.element').cloneNode(true);
-	const newImg = newCard.querySelector('.element__image');
-	const newImgText = newCard.querySelector('.element__text');
-	const icnButton = newCard.querySelector('.element__icon-button');
-	const trashButton = newCard.querySelector('.element__trash-button');
-	//заполнение 
-	newImg.src = cardLinkElt;
-	newImg.alt = 'фото: ' + cardTextElt;
-	newImgText.textContent = cardTextElt;
-
-	//присоединение проверки нажатия на кнопку <Like>
-	icnButton.addEventListener('click', () => {
-		icnButton.classList.toggle('element__icon-button_active');
-	});
-
-	//присоединение проверки нажатия на кнопку <Удалить> 
-	trashButton.addEventListener('click', () => {
-		newCard.remove();
-	});
-
-	//присоединение проверки нажатия на картинку
-	newImg.addEventListener('click', () => {
-		//заполнение
-		popupLargeImage.src = newImg.src;
-		popupLargeImage.alt = newImg.alt;
-		largeImageText.textContent = newImgText.textContent;
-		openPopup(imagePopup);
-	});
-	return newCard;
-};
-
-//Функция добавления карточки в таблицу
-function addNewCard(cardTextElt, cardLinkElt) {
-	newCard = createNewCard(cardTextElt, cardLinkElt);
-	cardsGrid.prepend(newCard);
-};
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
@@ -147,7 +110,21 @@ editProfileForm.addEventListener('submit', submitEditForm);
 addCardForm.addEventListener('submit', submitAddForm);
 
 //-----------------------------------------------------------------------------
-//Функция добавления карточек из массива
+//Функция добавления карточки в таблицу
+function addNewCard(cardTextElt, cardLinkElt) {
+	//обращение к классу  создания новой карточки
+	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, openPopup).createNewCard();
+	cardsGrid.prepend(newCard);
+};
+
+//Функция чтения карточек из массива
 initialCards.reverse().forEach((cardElt, index) => {
 	addNewCard(cardElt.name, cardElt.link);
+});
+
+//-----------------------------------------------------------------------------	
+//Валидация форм
+const forms = [...document.querySelectorAll(config.formElt)];
+forms.forEach(form => {
+	const formValidation = new FormValidator(form, config).enableFormValidation()
 });

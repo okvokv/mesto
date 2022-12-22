@@ -1,5 +1,5 @@
 //Массив карточек для таблицы
-const initialCards = [
+export const initialCards = [
 	{
 		name: 'Архыз',
 		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,3 +25,14 @@ const initialCards = [
 		link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
 	}
 ];
+
+export const config = (
+	{
+		formElt: '.form',
+		formField: '.form__field',
+		errorMessage: '.form__error-message',
+		errorMessVisible: 'form__error-message_visible',
+		submitBtnElt: '.form__submit-button',
+		submitBtnEltDisabled: 'form__submit-button_disabled'
+	}
+);
