@@ -47,7 +47,7 @@
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <form class="form" name="editForm">
+      <form class="form form_type_edit" name="editForm" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
         <input class="form__field form__field_type_name" type="text" placeholder="Имя" name="Name" autofocus required
           minlength="2" maxlength="50">
@@ -55,8 +55,7 @@
         <input class="form__field form__field_type_description" type="text" placeholder="О себе" name="Description"
           required minlength="2" maxlength="200">
         <span class="form__error-message" id="Description-error"></span>
-        <button class="form__submit-button form__submit-button_disabled" type="submit" disabled
-          aria-label="кнопка Сохранить">Сохранить</button>
+        <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
@@ -65,7 +64,7 @@
   <div class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <form class="form" name="addForm">
+      <form class="form form_type_add" name="addForm" novalidate>
         <h3 class="form__title">Новое место</h3>
         <input class="form__field form__field_type_cardname" type="text" placeholder="Название" name="cardName" required
           minlength="2" maxlength="30">
@@ -73,8 +72,7 @@
         <input class="form__field form__field_type_cardlink" type="url" placeholder="Ссылка на картинку" name="cardLink"
           required>
         <span class="form__error-message" id="cardLink-error"></span>
-        <button class="form__submit-button form__submit-button_disabled" type="submit" disabled
-          aria-label="кнопка Сохранить">Сохранить</button>
+        <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
       </form>
     </div>
   </div>
@@ -83,10 +81,8 @@
   <div class="popup popup_type_img">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <div>
-        <img class="popup__image" src="#" alt=" ">
-        <p class="popup__image-caption">******</p>
-      </div>
+      <img class="popup__image" src="#" alt=" ">
+      <p class="popup__image-caption">******</p>
     </div>
   </div>
 

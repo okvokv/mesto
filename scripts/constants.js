@@ -30,7 +30,7 @@ export const config = (
 	{
 		formElt: '.form',
 		formField: '.form__field',
-		errorMessage: '.form__error-message',
+		formFieldError: 'form__field_type_error',
 		errorMessVisible: 'form__error-message_visible',
 		submitBtnElt: '.form__submit-button',
 		submitBtnEltDisabled: 'form__submit-button_disabled'

@@ -1,12 +1,12 @@
+import Card from './Card.js'
 import { initialCards, config } from './constants.js'
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
+import FormValidator from './FormValidator.js'
 
 //Определение констант и переменных
 //кнопки
 const profileElt = document.querySelector('.profile');
-const editButton = profileElt.querySelector('.profile__edit-button');
-const addButton = profileElt.querySelector('.profile__add-button');
+const buttonEditProfile = profileElt.querySelector('.profile__edit-button');
+const buttonAddCard = profileElt.querySelector('.profile__add-button');
 
 const cardsGrid = document.querySelector('.elements__grid');
 
@@ -14,9 +14,9 @@ const cardsGrid = document.querySelector('.elements__grid');
 const popups = document.querySelectorAll('.popup')
 const editProfilePopup = document.querySelector('.popup_type_edit');
 const addCardPopup = document.querySelector('.popup_type_add');
-
 const imagePopup = document.querySelector('.popup_type_img');
 const popupLargeImage = imagePopup.querySelector('.popup__image');
+const largeImageText = imagePopup.querySelector('.popup__image-caption');
 
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
@@ -26,12 +26,12 @@ const userDescription = profileElt.querySelector('.profile__subtitle');
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
-const editProfileForm = document.forms.editForm;
+const editProfileForm = document.querySelector('.form_type_edit') //---//
 const inputName = editProfileForm.querySelector('.form__field_type_name');
 const inputDescription = editProfileForm.querySelector('.form__field_type_description');
 
 //Форма добавления контента 
-const addCardForm = document.forms.addForm;
+const addCardForm = document.querySelector('.form_type_add') //---//
 const inputCardName = addCardForm.querySelector('.form__field_type_cardname');
 const inputCardLink = addCardForm.querySelector('.form__field_type_cardlink');
 
@@ -61,15 +61,18 @@ function shutPopup(popupType) {
 
 //------------------------------------------------------------------------------
 //Проверка нажатия на кнопку редактировать профиль 
-editButton.addEventListener('click', (event) => {
+buttonEditProfile.addEventListener('click', (event) => {
 	//автозаполнение полей формы из профиля 
 	inputName.value = userName.textContent;
 	inputDescription.value = userDescription.textContent;
+	const formValidation = new FormValidator(editProfileForm, config).enableFormValidation();
 	openPopup(editProfilePopup);
 });
 
 //Проверка нажатия на кнопку добавления контента
-addButton.addEventListener('click', (event) => {
+buttonAddCard.addEventListener('click', (event) => {
+	const formValidation = new FormValidator(addCardForm, config).
+		enableFormValidation()
 	openPopup(addCardPopup);
 });
 
@@ -98,8 +101,7 @@ function submitAddForm(event) {
 //проверка нажатия на кнопку <Закрыть> и внешнюю часть всплывающего окна
 popups.forEach((popupType, index) => {
 	popupType.addEventListener('click', (event) => {
-		const popupCloseButton = event.target.closest('.popup__close-button');
-		if ((event.target === event.currentTarget) || (event.target === popupCloseButton) || (event.target === popupLargeImage)) {
+		if (event.target.classList.contains('popup_opened') || event.target.classList.contains('popup__close-button')) {
 			shutPopup(popupType);
 		};
 	});
@@ -111,20 +113,13 @@ addCardForm.addEventListener('submit', submitAddForm);
 
 //-----------------------------------------------------------------------------
 //Функция добавления карточки в таблицу
-function addNewCard(cardTextElt, cardLinkElt) {
+function addNewCard(cardTextElt, cardLinkElt, innerArr = false) {
 	//обращение к классу  создания новой карточки
-	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, openPopup).createNewCard();
-	cardsGrid.prepend(newCard);
+	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, openPopup, imagePopup, popupLargeImage, largeImageText).createNewCard();
+	innerArr ? cardsGrid.append(newCard) : cardsGrid.prepend(newCard);
 };
 
 //Функция чтения карточек из массива
-initialCards.reverse().forEach((cardElt, index) => {
-	addNewCard(cardElt.name, cardElt.link);
-});
-
-//-----------------------------------------------------------------------------	
-//Валидация форм
-const forms = [...document.querySelectorAll(config.formElt)];
-forms.forEach(form => {
-	const formValidation = new FormValidator(form, config).enableFormValidation()
+initialCards.forEach((cardElt, index) => {
+	addNewCard(cardElt.name, cardElt.link, true);
 });

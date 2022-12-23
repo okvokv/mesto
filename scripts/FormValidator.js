@@ -6,17 +6,17 @@ export default class FormValidator {
 
 	//включение видимости сообщения об ошибке
 	_showErrorMessage(_field) {
-		//this._error.classList.add(this._config.errorMessVisible);
+		//this._errorSpan.classList.add(this._config.errorMessVisible);
 		//подчеркнуть и вывести в форму браузерное сообщение об ошибке
-		_field.style.borderBottom = '1px solid rgba(248, 4, 4, 1)';
+		_field.classList.add(this._config.formFieldError);
 		this._errorSpan.textContent = _field.validationMessage;
 	};
 
 	//выключение видимости сообщения об ошибке
 	_hideErrorMessage(_field) {
-		//this._error.classList.remove(this._config.errorMessVisible);
+		//this._errorSpan.classList.remove(this._config.errorMessVisible);
 		//сброс подчёркивания и сообщения об ошибке
-		_field.style.borderBottom = '';
+		_field.classList.remove(this._config.formFieldError);
 		this._errorSpan.textContent = '';
 	};
 
@@ -51,8 +51,17 @@ export default class FormValidator {
 	enableFormValidation() {
 		this._fields = [...this._form.querySelectorAll(this._config.formField)];
 		this._button = this._form.querySelector(this._config.submitBtnElt);
-		//установка проверки валидности ввода
+		//установка начальных параметров кнопки
+		this._button.setAttribute('disabled', true);
+		this._button.classList.add(this._config.submitBtnEltDisabled);
+
 		this._fields.forEach(_field => {
+			//установка начальных параметров поля
+			_field.classList.remove(this._config.formFieldError);
+			const _errorSpan = this._form.querySelector(`#${_field.name}-error`);
+			if (this._form.name === "editForm"){ 
+			_errorSpan.textContent = ''};
+			//установка проверки валидности ввода
 			_field.addEventListener('input', () => {
 				this._errorSpan = this._form.querySelector(`#${_field.name}-error`);
 				//определить валидность поля
@@ -63,4 +72,4 @@ export default class FormValidator {
 		});
 	};
 
-};
+}

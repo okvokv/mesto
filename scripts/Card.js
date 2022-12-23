@@ -1,8 +1,11 @@
 export default class Card {
-	constructor(cardTextElt, cardLinkElt, cardTemplate, openPopup) {
+	constructor(cardTextElt, cardLinkElt, cardTemplate, openPopup, imagePopup, popupLargeImage, largeImageText) {
 		this._cardText = cardTextElt;
 		this._cardLink = cardLinkElt;
 		this._cardTemplate = cardTemplate;
+		this._imagePopup = imagePopup;
+		this._popupLargeImage = popupLargeImage;
+		this._largeImageText = largeImageText;
 		this._openPopup = openPopup;
 	}
 
@@ -40,19 +43,14 @@ export default class Card {
 
 	//присоединение проверки нажатия на картинку
 	_setNewImgListener() {
-		const _imagePopup = document.querySelector('.popup_type_img');
-		const _popupLargeImage = _imagePopup.querySelector('.popup__image');
-		const _largeImageText = _imagePopup.querySelector('.popup__image-caption');
-
 		this._newImg.addEventListener('click', () => {
 			//заполнение
-			_popupLargeImage.src = this._newImg.src;
-			_popupLargeImage.alt = this._newImg.alt;
-			_largeImageText.textContent = this._newImgText.textContent;
-			this._openPopup(_imagePopup);
+			this._popupLargeImage.src = this._newImg.src;
+			this._popupLargeImage.alt = this._newImg.alt;
+			this._largeImageText.textContent = this._newImgText.textContent;
+			this._openPopup(this._imagePopup);
 		});
 	};
-//открытие всплывающего окна с большой картинкой
 
 	//сборка новой карточки
 	createNewCard = () => {
@@ -64,4 +62,4 @@ export default class Card {
 		return this._newCard;
 	};
 
-};
+}
