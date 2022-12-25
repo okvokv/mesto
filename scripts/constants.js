@@ -32,7 +32,7 @@ export const config = (
 		formField: '.form__field',
 		formFieldError: 'form__field_type_error',
 		errorMessVisible: 'form__error-message_visible',
-		submitBtnElt: '.form__submit-button',
-		submitBtnEltDisabled: 'form__submit-button_disabled'
+		formSubmitBtn: '.form__submit-button',
+		formSubmitBtnDisabled: 'form__submit-button_disabled'
 	}
 );

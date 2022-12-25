@@ -47,14 +47,14 @@
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <form class="form form_type_edit" name="editForm" novalidate>
+      <form class="form form_type_edit" name="profileForm" novalidate>
         <h3 class="form__title">Редактировать профиль</h3>
-        <input class="form__field form__field_type_name" type="text" placeholder="Имя" name="Name" autofocus required
+        <input class="form__field form__field_type_name" type="text" placeholder="Имя" name="name" autofocus required
           minlength="2" maxlength="50">
-        <span class="form__error-message" id="Name-error"></span>
-        <input class="form__field form__field_type_description" type="text" placeholder="О себе" name="Description"
+        <span class="form__error-message" id="name-error"></span>
+        <input class="form__field form__field_type_description" type="text" placeholder="О себе" name="description"
           required minlength="2" maxlength="200">
-        <span class="form__error-message" id="Description-error"></span>
+        <span class="form__error-message" id="description-error"></span>
         <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
       </form>
     </div>
@@ -64,7 +64,7 @@
   <div class="popup popup_type_add">
     <div class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <form class="form form_type_add" name="addForm" novalidate>
+      <form class="form form_type_add" name="cardForm" novalidate>
         <h3 class="form__title">Новое место</h3>
         <input class="form__field form__field_type_cardname" type="text" placeholder="Название" name="cardName" required
           minlength="2" maxlength="30">
@@ -96,7 +96,6 @@
       </div>
     </li>
   </template>
-
 
   <script type="module" src="./scripts/constants.js"></script>
   <script type="module" src="./scripts/Card.js"></script>

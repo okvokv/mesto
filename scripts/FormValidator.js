@@ -30,37 +30,49 @@ export default class FormValidator {
 	};
 
 	//определение валидности формы в целом
-	_determineFormValidity() {
+	_determineFormValidity(_field) {
 		return this._fields.every(_field => {
 			return _field.validity.valid;
 		});
+	};
+
+	//установка начальных параметров формы
+	setFormInitialState(_form, _config) {
+		this._config = _config;
+		const _fields = [..._form.querySelectorAll(this._config.formField)];
+		_fields.forEach(_field => {
+			this._errorSpan = _form.querySelector(`#${_field.name}-error`);
+			this._hideErrorMessage(_field);
+		});
+	};
+
+	//установка начального состояния кнопки <Сохранить>
+	setBtnInitialState(_form, _config) {
+		const _button = _form.querySelector(_config.formSubmitBtn);
+		this._fields = [..._form.querySelectorAll(_config.formField)];
+		//если заполненная валидная форма доб. контента была случайно закрыта и открыта снова - кнопка активна
+		if (!(_form.name === "cardForm" && this._determineFormValidity())) {
+			_button.setAttribute('disabled', true);
+			_button.classList.add(_config.formSubmitBtnDisabled);
+		}
 	};
 
 	//переключение состояния кнопки <Сохранить>
 	_setSubmitBtnState() {
 		if (this._determineFormValidity()) {
 			this._button.removeAttribute('disabled', true);
-			this._button.classList.remove(this._config.submitBtnEltDisabled);
+			this._button.classList.remove(this._config.formSubmitBtnDisabled);
 		} else {
 			this._button.setAttribute('disabled', true);
-			this._button.classList.add(this._config.submitBtnEltDisabled);
+			this._button.classList.add(this._config.formSubmitBtnDisabled);
 		};
 	};
 
 	//агрегатор методов
 	enableFormValidation() {
 		this._fields = [...this._form.querySelectorAll(this._config.formField)];
-		this._button = this._form.querySelector(this._config.submitBtnElt);
-		//установка начальных параметров кнопки
-		this._button.setAttribute('disabled', true);
-		this._button.classList.add(this._config.submitBtnEltDisabled);
-
+		this._button = this._form.querySelector(this._config.formSubmitBtn);
 		this._fields.forEach(_field => {
-			//установка начальных параметров поля
-			_field.classList.remove(this._config.formFieldError);
-			const _errorSpan = this._form.querySelector(`#${_field.name}-error`);
-			if (this._form.name === "editForm"){ 
-			_errorSpan.textContent = ''};
 			//установка проверки валидности ввода
 			_field.addEventListener('input', () => {
 				this._errorSpan = this._form.querySelector(`#${_field.name}-error`);

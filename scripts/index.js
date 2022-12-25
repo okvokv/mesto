@@ -5,15 +5,15 @@ import FormValidator from './FormValidator.js'
 //Определение констант и переменных
 //кнопки
 const profileElt = document.querySelector('.profile');
-const buttonEditProfile = profileElt.querySelector('.profile__edit-button');
-const buttonAddCard = profileElt.querySelector('.profile__add-button');
+const profileButton = profileElt.querySelector('.profile__edit-button');
+const cardButton = profileElt.querySelector('.profile__add-button');
 
 const cardsGrid = document.querySelector('.elements__grid');
 
 //всплывающие окна
 const popups = document.querySelectorAll('.popup')
-const editProfilePopup = document.querySelector('.popup_type_edit');
-const addCardPopup = document.querySelector('.popup_type_add');
+const profileEditPopup = document.querySelector('.popup_type_edit');
+const cardAddPopup = document.querySelector('.popup_type_add');
 const imagePopup = document.querySelector('.popup_type_img');
 const popupLargeImage = imagePopup.querySelector('.popup__image');
 const largeImageText = imagePopup.querySelector('.popup__image-caption');
@@ -26,14 +26,21 @@ const userDescription = profileElt.querySelector('.profile__subtitle');
 
 //-------------------------------------------------------------------------
 //Форма редактирования профиля
-const editProfileForm = document.querySelector('.form_type_edit') //---//
-const inputName = editProfileForm.querySelector('.form__field_type_name');
-const inputDescription = editProfileForm.querySelector('.form__field_type_description');
+const profileEditForm = document.querySelector('.form_type_edit') //---//
+const inputName = profileEditForm.querySelector('.form__field_type_name');
+const inputDescription = profileEditForm.querySelector('.form__field_type_description');
 
 //Форма добавления контента 
-const addCardForm = document.querySelector('.form_type_add') //---//
-const inputCardName = addCardForm.querySelector('.form__field_type_cardname');
-const inputCardLink = addCardForm.querySelector('.form__field_type_cardlink');
+const cardAddForm = document.querySelector('.form_type_add') //---//
+const inputCardName = cardAddForm.querySelector('.form__field_type_cardname');
+const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
+
+//------------------------------------------------------------------------
+//включение отображения валидности форм
+const forms = [...document.querySelectorAll(config.formElt)];
+forms.forEach(form => {
+	const formValidation = new FormValidator(form, config).enableFormValidation();
+});
 
 //-----------------------------------------------------------------------
 //Функция реакции на нажатие <Esc>
@@ -61,19 +68,22 @@ function shutPopup(popupType) {
 
 //------------------------------------------------------------------------------
 //Проверка нажатия на кнопку редактировать профиль 
-buttonEditProfile.addEventListener('click', (event) => {
+profileButton.addEventListener('click', (event) => {
 	//автозаполнение полей формы из профиля 
 	inputName.value = userName.textContent;
 	inputDescription.value = userDescription.textContent;
-	const formValidation = new FormValidator(editProfileForm, config).enableFormValidation();
-	openPopup(editProfilePopup);
+	//установка  нач. значений полей
+	const formState = new FormValidator().setFormInitialState(profileEditForm, config);
+	//установка нач. значения кнопки
+	const buttonState = new FormValidator().setBtnInitialState(profileEditForm, config);
+	openPopup(profileEditPopup);
 });
 
 //Проверка нажатия на кнопку добавления контента
-buttonAddCard.addEventListener('click', (event) => {
-	const formValidation = new FormValidator(addCardForm, config).
-		enableFormValidation()
-	openPopup(addCardPopup);
+cardButton.addEventListener('click', (event) => {
+	//установка нач. значения кнопки
+	const buttonState = new FormValidator().setBtnInitialState(cardAddForm, config);
+	openPopup(cardAddPopup);
 });
 
 //Для всплывающих окон:
@@ -84,7 +94,7 @@ function submitEditForm(event) {
 	//замена значений 
 	userName.textContent = inputName.value;
 	userDescription.textContent = inputDescription.value;
-	shutPopup(editProfilePopup);
+	shutPopup(profileEditPopup);
 };
 
 //функция отправки содержания формы добавления контента
@@ -94,7 +104,7 @@ function submitAddForm(event) {
 	addNewCard(inputCardName.value, inputCardLink.value);
 	//сброс полей
 	event.target.reset();
-	shutPopup(addCardPopup);
+	shutPopup(cardAddPopup);
 };
 
 //----------------------------------------------------------------------------
@@ -103,13 +113,14 @@ popups.forEach((popupType, index) => {
 	popupType.addEventListener('click', (event) => {
 		if (event.target.classList.contains('popup_opened') || event.target.classList.contains('popup__close-button')) {
 			shutPopup(popupType);
+			//сброс полей формы доб. контента через 5 мин.
 		};
 	});
 });
 
 //проверка нажатия на кнопку <Сохранить>
-editProfileForm.addEventListener('submit', submitEditForm);
-addCardForm.addEventListener('submit', submitAddForm);
+profileEditForm.addEventListener('submit', submitEditForm);
+cardAddForm.addEventListener('submit', submitAddForm);
 
 //-----------------------------------------------------------------------------
 //Функция добавления карточки в таблицу
