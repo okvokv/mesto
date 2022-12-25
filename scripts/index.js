@@ -39,7 +39,7 @@ const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
 //включение отображения валидности форм
 const forms = [...document.querySelectorAll(config.formElt)];
 forms.forEach(form => {
-	const formValidation = new FormValidator(form, config).enableFormValidation();
+	new FormValidator(form, config).enableFormValidation();
 });
 
 //-----------------------------------------------------------------------
@@ -73,16 +73,16 @@ profileButton.addEventListener('click', (event) => {
 	inputName.value = userName.textContent;
 	inputDescription.value = userDescription.textContent;
 	//установка  нач. значений полей
-	const formState = new FormValidator().setFormInitialState(profileEditForm, config);
+	new FormValidator().setFormInitialState(profileEditForm, config);
 	//установка нач. значения кнопки
-	const buttonState = new FormValidator().setBtnInitialState(profileEditForm, config);
+	new FormValidator().setBtnInitialState(profileEditForm, config);
 	openPopup(profileEditPopup);
 });
 
 //Проверка нажатия на кнопку добавления контента
 cardButton.addEventListener('click', (event) => {
 	//установка нач. значения кнопки
-	const buttonState = new FormValidator().setBtnInitialState(cardAddForm, config);
+	new FormValidator().setBtnInitialState(cardAddForm, config);
 	openPopup(cardAddPopup);
 });
 

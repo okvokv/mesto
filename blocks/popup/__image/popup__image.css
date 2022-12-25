@@ -1,8 +1,8 @@
 .popup__image {
-	display: block;
+	margin: 0;
 	max-width: 75vw;
 	max-height: 75vh;
 	object-fit: contain;
-	border: 3px double rgba(110, 109, 109, 0.575);
+	border: 4px double rgba(110, 109, 109, 0.575);
 	cursor: zoom-out;
 }
