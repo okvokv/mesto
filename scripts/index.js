@@ -125,7 +125,7 @@ cardAddForm.addEventListener('submit', submitAddForm);
 //Функция добавления карточки в таблицу
 function addNewCard(cardTextElt, cardLinkElt, innerArr = false) {
 	//обращение к классу создания новой карточки
-	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, imagePopup, popupLargeImage, largeImageText, openPopup).createNewCard();
+	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, popupLargeImage, largeImageText, imagePopup, openPopup).createNewCard();
 	//добавление
 	innerArr ? cardsGrid.append(newCard) : cardsGrid.prepend(newCard);
 };
