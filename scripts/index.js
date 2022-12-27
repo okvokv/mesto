@@ -38,7 +38,7 @@ const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
 //------------------------------------------------------------------------
 //включение отображения валидности форм
 const profileEditFormValdation = new FormValidator(profileEditForm, config);
-const profileEditFormVal= profileEditFormValdation.enableFormValidation(); //---//
+const profileEditFormVal = profileEditFormValdation.enableFormValidation(); //---//
 
 const cardAddFormValidation = new FormValidator(cardAddForm, config);
 const cardAddFormVal = cardAddFormValidation.enableFormValidation(); //---//
@@ -87,8 +87,7 @@ cardButton.addEventListener('click', (event) => {
 	openPopup(cardAddPopup);
 });
 
-//Для всплывающих окон:
-//-----------------------------------------------------------------------------
+//Для всплывающих окон:    ------------------------------------------------------ 
 //функция отправки содержания формы редактирования профиля (event eq. submit)
 function submitEditForm(event) {
 	event.preventDefault();

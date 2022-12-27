@@ -40,7 +40,7 @@ export default class FormValidator {
 
 	//удаление предыдущих сообщений об ошибке при открытии формы
 	delFormErrorMessages() {
-			this._fields.forEach(_field => {
+		this._fields.forEach(_field => {
 			this._errorSpan = this._form.querySelector(`#${_field.name}-error`);
 			this._hideErrorMessage(_field);
 		});
