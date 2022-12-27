@@ -1,5 +1,5 @@
-import Card from './Card.js'
 import { initialCards, config } from './constants.js'
+import Card from './Card.js'
 import FormValidator from './FormValidator.js'
 
 //Определение констант и переменных
@@ -38,10 +38,10 @@ const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
 //------------------------------------------------------------------------
 //включение отображения валидности форм
 const profileEditFormValdation = new FormValidator(profileEditForm, config);
-const profileEditFormVal = profileEditFormValdation.enableFormValidation(); //---//
+profileEditFormValdation.enableFormValidation(); 
 
 const cardAddFormValidation = new FormValidator(cardAddForm, config);
-const cardAddFormVal = cardAddFormValidation.enableFormValidation(); //---//
+cardAddFormValidation.enableFormValidation(); 
 
 //-----------------------------------------------------------------------
 //Функция реакции на нажатие <Esc>
