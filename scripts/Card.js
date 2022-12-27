@@ -41,19 +41,20 @@ export default class Card {
 		});
 	};
 
-	//присоединение проверки нажатия на картинку
+	//присоединение проверки нажатия на картинку и кнопку <Удалить> 
 	_setNewImgListener() {
 		this._newImg.addEventListener('click', () => {
 			//заполнение
 			this._popupLargeImage.src = this._newImg.src;
 			this._popupLargeImage.alt = this._newImg.alt;
 			this._largeImageText.textContent = this._newImgText.textContent;
+
 			this._openPopup(this._imagePopup);
 		});
 	};
 
 	//сборка новой карточки
-	createNewCard = () => {
+	createNewCard = (_newCard) => {
 		this._cloneTemplate();
 		this._fillNewCard();
 		this._setIcnButtonListener();

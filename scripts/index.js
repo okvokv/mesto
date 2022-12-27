@@ -37,10 +37,11 @@ const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
 
 //------------------------------------------------------------------------
 //включение отображения валидности форм
-const forms = [...document.querySelectorAll(config.formElt)];
-forms.forEach(form => {
-	new FormValidator(form, config).enableFormValidation();
-});
+const profileEditFormValdation = new FormValidator(profileEditForm, config);
+const profileEditFormVal= profileEditFormValdation.enableFormValidation(); //---//
+
+const cardAddFormValidation = new FormValidator(cardAddForm, config);
+const cardAddFormVal = cardAddFormValidation.enableFormValidation(); //---//
 
 //-----------------------------------------------------------------------
 //Функция реакции на нажатие <Esc>
@@ -72,17 +73,17 @@ profileButton.addEventListener('click', (event) => {
 	//автозаполнение полей формы из профиля 
 	inputName.value = userName.textContent;
 	inputDescription.value = userDescription.textContent;
-	//установка  нач. значений полей
-	new FormValidator().setFormInitialState(profileEditForm, config);
-	//установка нач. значения кнопки
-	new FormValidator().setBtnInitialState(profileEditForm, config);
+	//удаление предыдущих сообщений об ошибке
+	profileEditFormValdation.delFormErrorMessages(); //---//
+	//отключить кнопку <Сохранить>
+	profileEditFormValdation.disableSubmitButton(); //---//
 	openPopup(profileEditPopup);
 });
 
 //Проверка нажатия на кнопку добавления контента
 cardButton.addEventListener('click', (event) => {
-	//установка нач. значения кнопки
-	new FormValidator().setBtnInitialState(cardAddForm, config);
+	//отключить кнопку <Сохранить>
+	cardAddFormValidation.disableSubmitButton(); //---//
 	openPopup(cardAddPopup);
 });
 
@@ -107,7 +108,6 @@ function submitAddForm(event) {
 	shutPopup(cardAddPopup);
 };
 
-//----------------------------------------------------------------------------
 //проверка нажатия на кнопку <Закрыть> и внешнюю часть всплывающего окна
 popups.forEach((popupType, index) => {
 	popupType.addEventListener('click', (event) => {
@@ -125,12 +125,13 @@ cardAddForm.addEventListener('submit', submitAddForm);
 //-----------------------------------------------------------------------------
 //Функция добавления карточки в таблицу
 function addNewCard(cardTextElt, cardLinkElt, innerArr = false) {
-	//обращение к классу  создания новой карточки
+	//обращение к классу создания новой карточки
 	const newCard = new Card(cardTextElt, cardLinkElt, cardTemplate, openPopup, imagePopup, popupLargeImage, largeImageText).createNewCard();
+	//добавление
 	innerArr ? cardsGrid.append(newCard) : cardsGrid.prepend(newCard);
 };
 
-//Функция чтения карточек из массива
+//Функция чтения карточек из массива и добавление в таблицу 
 initialCards.forEach((cardElt, index) => {
 	addNewCard(cardElt.name, cardElt.link, true);
 });
