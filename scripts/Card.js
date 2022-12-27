@@ -1,5 +1,5 @@
 export default class Card {
-	constructor(cardTextElt, cardLinkElt, cardTemplate, openPopup, imagePopup, popupLargeImage, largeImageText) {
+	constructor(cardTextElt, cardLinkElt, cardTemplate, imagePopup, popupLargeImage, largeImageText, openPopup) {
 		this._cardText = cardTextElt;
 		this._cardLink = cardLinkElt;
 		this._cardTemplate = cardTemplate;
