@@ -72,27 +72,27 @@
         <input class="form__field form__field_type_cardlink" type="url" placeholder="Ссылка на картинку" name="cardLink"
           required>
         <span class="form__error-message" id="cardLink-error"></span>
-        <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Сохранить</button>
+        <button class="form__submit-button" type="submit" aria-label="кнопка Сохранить">Создать</button>
       </form>
     </div>
   </div>
 
   <!--всплывающее окно с картинкой ======================-->
-  <div class="popup popup_type_img">
+  <div class="popup popup_type_image">
     <figure class="popup__container">
       <button class="popup__close-button" type="button" aria-label="кнопка Закрыть"></button>
-      <img class="popup__image" src="#" alt=" ">
-      <figcaption class="popup__image-caption">******</figcaption>
+      <img class="popup__image" src="#" alt="">
+      <figcaption class="popup__image-text">******</figcaption>
     </figure>
   </div>
 
   <!--шаблон для новых карточек ==========================================-->
   <template class="cardTemplate">
     <li class="element">
-      <img class="element__image" src=" " alt=" ">
+      <img class="element__image" src="" alt="">
       <button class="element__trash-button" type="button"></button>
       <div class="element__caption">
-        <h2 class="element__text">******</h2>
+        <h2 class="element__text"></h2>
         <button class="element__icon-button" type="button"></button>
       </div>
     </li>

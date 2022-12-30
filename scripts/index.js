@@ -14,9 +14,9 @@ const cardsGrid = document.querySelector('.elements__grid');
 const popups = document.querySelectorAll('.popup')
 const profileEditPopup = document.querySelector('.popup_type_edit');
 const cardAddPopup = document.querySelector('.popup_type_add');
-const imagePopup = document.querySelector('.popup_type_img');
+const imagePopup = document.querySelector('.popup_type_image');
 const popupLargeImage = imagePopup.querySelector('.popup__image');
-const largeImageText = imagePopup.querySelector('.popup__image-caption');
+const largeImageText = imagePopup.querySelector('.popup__image-text');
 
 const cardTemplate = document.querySelector('.cardTemplate').content;
 
@@ -38,10 +38,10 @@ const inputCardLink = cardAddForm.querySelector('.form__field_type_cardlink');
 //------------------------------------------------------------------------
 //включение отображения валидности форм
 const profileEditFormValdation = new FormValidator(profileEditForm, config);
-profileEditFormValdation.enableFormValidation(); 
+profileEditFormValdation.enableFormValidation();
 
 const cardAddFormValidation = new FormValidator(cardAddForm, config);
-cardAddFormValidation.enableFormValidation(); 
+cardAddFormValidation.enableFormValidation();
 
 //-----------------------------------------------------------------------
 //Функция реакции на нажатие <Esc>
@@ -69,7 +69,7 @@ function shutPopup(popupType) {
 
 //------------------------------------------------------------------------------
 //Проверка нажатия на кнопку редактировать профиль 
-profileButton.addEventListener('click', (event) => {
+profileButton.addEventListener('click', () => {
 	//автозаполнение полей формы из профиля 
 	inputName.value = userName.textContent;
 	inputDescription.value = userDescription.textContent;
@@ -81,7 +81,7 @@ profileButton.addEventListener('click', (event) => {
 });
 
 //Проверка нажатия на кнопку добавления контента
-cardButton.addEventListener('click', (event) => {
+cardButton.addEventListener('click', () => {
 	//отключить кнопку <Сохранить>
 	cardAddFormValidation.disableSubmitButton(); //---//
 	openPopup(cardAddPopup);

@@ -12,7 +12,6 @@ export default class Card {
 	//клонирование шаблона
 	_cloneTemplate = () => {
 		this._newCard = this._cardTemplate.querySelector('.element').cloneNode(true);
-		return this._newCard;
 	}
 
 	//заполнение копии шаблона
@@ -54,7 +53,7 @@ export default class Card {
 	};
 
 	//сборка новой карточки
-	createNewCard = (_newCard) => {
+	createNewCard() {
 		this._cloneTemplate();
 		this._fillNewCard();
 		this._setIcnButtonListener();
