@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
+  <!--Подготовленный для обработки webpack'ом HTML -->
 </head>
 
 <body class="page">
@@ -18,7 +18,7 @@
 
     <!--Секция профиль ==============================================-->
     <section class="profile">
-      <img class="profile__avatar" src="images/avatar.png" alt="Аватар">
+      <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
 
       <div class="profile__info">
         <div class="profile__title-group">
@@ -87,7 +87,7 @@
   </div>
 
   <!--шаблон для новых карточек ==========================================-->
-  <template class="cardTemplate">
+  <template class="card-template">
     <li class="element">
       <img class="element__image" src="" alt="">
       <button class="element__trash-button" type="button"></button>
@@ -97,11 +97,6 @@
       </div>
     </li>
   </template>
-
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
 
 </body>
 
