@@ -8,16 +8,15 @@ export default class Section {
 	//чтение данных карточек из массива, сборка элемента и добавление в таблицу
 	addItems() {
 		this._items.forEach((_item, index) => {
-			//добавление в таблицу
 			this.addItem(_item, true)
 		});
 	}
 
 	//добавление карточки в таблицу
-	addItem(_item, _innerArr = false) {
+	addItem(_cardData, _innerArr = false) {
 		//сборка карточки
-		const _newCard = this._renderer(_item);
-		//добавление
+		const _newCard = this._renderer(_cardData);
+		//добавление в таблицу
 		_innerArr ?
 			this._container.append(_newCard) :
 			this._container.prepend(_newCard);

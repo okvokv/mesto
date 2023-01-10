@@ -7,7 +7,7 @@ export default class FormValidator {
 	}
 
 	//включение видимости сообщения об ошибке
-	_showErrorMessage() {
+	_showErrorMessage = () => {
 		this._errorSpan = this._form.querySelector(`#${this._field.name}-error`);
 		//вывести в форму браузерное сообщение об ошибке и подчёркивание
 		//this._errorSpan.classList.add(this._config.errorMessVisible);
@@ -16,7 +16,7 @@ export default class FormValidator {
 	};
 
 	//выключение видимости сообщения об ошибке
-	_hideErrorMessage() {
+	_hideErrorMessage = () => {
 		this._errorSpan = this._form.querySelector(`#${this._field.name}-error`);
 		//сброс сообщения об ошибке и подчёркивания
 		//this._errorSpan.classList.remove(this._config.errorMessVisible);
@@ -25,7 +25,7 @@ export default class FormValidator {
 	};
 
 	//определение валидности поля и включение/выключение сообщения об ошибке
-	_determineFieldValidity() {
+	_determineFieldValidity = () => {
 		this._field.validity.valid ?
 			this._hideErrorMessage() :
 			this._showErrorMessage();
@@ -65,18 +65,22 @@ export default class FormValidator {
 			this.disableSubmitButton();
 	};
 
-	//агрегатор методов
-	enableFormValidation() {
-		//установка проверки валидности ввода		
+	//установка проверки валидности ввода
+	_setEventListener() {
 		this._fields.forEach(_field => {
 			_field.addEventListener('input', () => {
-				this._field = _field;
+				this._field =_field;
 				//определить валидность поля
 				this._determineFieldValidity();
 				//переключение состояния кнопки
 				this._toggleButtonState();
-			});
 		});
-	};
+		});
+	}
 
+	//агрегатор методов
+	enableFormValidation() {
+		//установка проверки валидности ввода		
+		this._setEventListener();
+	};
 }
