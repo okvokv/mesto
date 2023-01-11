@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "**Учебный проект \"Место\" (mesto)** (описание проекта)",
-  "main": "babel.config.js",
+  "main": "index.js",
   "dependencies": {
     "acorn": "^8.8.1",
     "acorn-import-assertions": "^1.8.0",
