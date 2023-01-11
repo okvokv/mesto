@@ -14,7 +14,7 @@ export default class Section {
 
 	//добавление карточки в таблицу
 	addItem(_cardData, _innerArr = false) {
-		//сборка карточки
+		//сборка 
 		const _newCard = this._renderer(_cardData);
 		//добавление в таблицу
 		_innerArr ?

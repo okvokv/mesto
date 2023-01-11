@@ -38,24 +38,23 @@ export default class Card {
 	};
 
 	//присоединение проверки нажатия на картинку
-	_setNewImgListener = (_cardData) => {
-		this._newImage.addEventListener('click', () =>
-			this._handleImageClick(_cardData));
+	_setNewImgListener = () => {
+		this._newImage.addEventListener('click', () => 
+		this._handleImageClick(this._cardData));
 	};
 
 	//установка слушателей
-	_setEventListeners(_cardData) {
+	_setEventListeners() {
 		this._setIcnButtonListener();
 		this._setTrashButtonListener();
-		this._setNewImgListener(_cardData);
+		this._setNewImgListener();
 	}
 
 	//сборка новой карточки
-	createNewCard = (_cardData) => {
-		this._cardData = _cardData;
+	createNewCard() {
 		this._cloneTemplate();
 		this._fillNewCard();
-		this._setEventListeners(_cardData);
+		this._setEventListeners();
 		return this._newCard;
 	};
 

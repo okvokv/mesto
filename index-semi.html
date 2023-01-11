@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/pages/index.css">
   <title>Mesto</title>
-  <!--Подготовленный для обработки webpack'ом HTML -->
 </head>
 
 <body class="page">
   <!-- Шапка сайта =================================================-->
   <header class="header">
-    <img class="header__logo" src="<%=require(./images/logo.svg)%>" alt="Логотип">
+    <img class="header__logo" src="./src/images/logo.svg" alt="Логотип">
   </header>
 
   <main class="main">
 
     <!--Секция профиль ==============================================-->
     <section class="profile">
-      <img class="profile__avatar" src="<%=require(./images/avatar.png)%>" alt="Аватар">
+      <img class="profile__avatar" src="./src/images/avatar.png" alt="Аватар">
 
       <div class="profile__info">
         <div class="profile__title-group">
@@ -89,7 +89,7 @@
   <!--шаблон для новых карточек ==========================================-->
   <template class="card-template">
     <li class="element">
-      <img class="element__image" src=" " alt=" ">
+      <img class="element__image" src="" alt="">
       <button class="element__trash-button" type="button"></button>
       <div class="element__caption">
         <h2 class="element__text"></h2>
@@ -97,6 +97,16 @@
       </div>
     </li>
   </template>
+
+  <script type="module" src="./src/utils/constants.js"></script>
+  <script type="module" src="./src/components/Card.js"></script>
+  <script type="module" src="./src/components/FormValidator.js"></script>
+  <script type="module" src="./src/components/UserInfo.js"></script>
+  <script type="module" src="./src/components/Section.js"></script>
+  <script type="module" src="./src/components/Popup.js"></script>
+  <script type="module" src="./src/components/PopupWithForm.js"></script>
+  <script type="module" src="./src/components/PopupWithImage.js"></script>
+  <script type="module" src="./src/pages/index.js"></script>
 
 </body>
 

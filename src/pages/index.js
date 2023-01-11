@@ -1,4 +1,4 @@
-import './index.css';                              
+//import './index.css';                              
 import { initialCards, config } from '../utils/constants.js';         //---//
 import UserInfo from '../components/UserInfo.js';
 import Card from '../components/Card.js';
@@ -41,15 +41,17 @@ const popupWithProfileForm = new PopupWithForm(profileEditPopup, submitProfileFo
 const popupWithCardForm = new PopupWithForm(cardAddPopup, submitCardForm);
 const popupWithImage = new PopupWithImage(imagePopup);
 
-//включение класса сборки карточки
-const cardData = {};
+//функция создания новой карточки
 const handleImageClick = popupWithImage.handleImageClick;
-const newCard = new Card(cardData, cardTemplate, handleImageClick)
+const renderer = (cardData) => {
+	//включение класса создания карточек
+	const newCard = new Card(cardData, cardTemplate, handleImageClick)
+		.createNewCard();
+	return newCard;
+}
 
 //включение класса добавления карточек
-const items = initialCards;
-const renderer = newCard.createNewCard;
-const section = new Section(items, renderer, cardsGrid);
+const section = new Section(initialCards, renderer, cardsGrid);
 //добавление карточек из массива на страницу
 section.addItems();
 
@@ -64,7 +66,7 @@ cardAddFormValidation.enableFormValidation();
 //проверка нажатия на кнопку редактировать профиль 
 profileButton.addEventListener('click', () => {
 	//автозаполнение полей формы из профиля 
-	const userData = userInfo.getUserInfo(); 
+	const userData = userInfo.getUserInfo();
 	inputName.value = userData.name;
 	inputDescription.value = userData.description;
 	//удаление предыдущих сообщений об ошибке
